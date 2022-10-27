@@ -255,7 +255,7 @@ public interface AnnotationValues {
      * @since 0.0.0
      */
     @SideEffectFree
-    <T extends @NonNull Object> @NonNull Optional<@NonNull Class<@NonNull T>> getClass(
+    <T extends @NonNull Object> @NonNull Optional<@NonNull Class<? extends @NonNull T>> getClass(
             @NonNull AnnotationElement annotationElement);
 
     /**
