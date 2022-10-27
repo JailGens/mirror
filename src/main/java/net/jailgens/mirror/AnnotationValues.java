@@ -43,7 +43,7 @@ public interface AnnotationValues {
      * @since 0.0.0
      */
     @SideEffectFree
-    static Mirror.@NewObject @NonNull Builder builder() {
+    static @NewObject @NonNull Builder builder() {
 
         // TODO(Sparky983): implement
         throw new RuntimeException("Not implemented yet");
