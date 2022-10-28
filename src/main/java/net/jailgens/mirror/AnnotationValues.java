@@ -570,7 +570,8 @@ public interface AnnotationValues {
          * @throws NullPointerException if {@code element} or {@code value} are {@code null}.
          * @since 0.0.0
          */
-        @NonNull @This Builder value(@NonNull AnnotationElement element, @NonNull Enum<? extends @NonNull Object> value);
+        @NonNull @This Builder value(@NonNull AnnotationElement element,
+                                     @NonNull Enum<? extends @NonNull Object> value);
 
         /**
          * Sets the value of the specified element to the specified value.
@@ -581,7 +582,8 @@ public interface AnnotationValues {
          * @throws NullPointerException if {@code element} or {@code value} are {@code null}.
          * @since 0.0.0
          */
-        @NonNull @This Builder value(@NonNull AnnotationElement element, @NonNull AnnotationValues value);
+        @NonNull @This Builder value(@NonNull AnnotationElement element,
+                                     @NonNull AnnotationValues value);
 
         /**
          * Sets the value of the specified element to the specified value.
@@ -593,7 +595,8 @@ public interface AnnotationValues {
          * @since 0.0.0
          */
         @NonNull @This Builder value(
-                @NonNull AnnotationElement element, @NonNull Class<? extends @NonNull Object> value);
+                @NonNull AnnotationElement element,
+                @NonNull Class<? extends @NonNull Object> value);
 
         /**
          * Sets the value of the specified element to the specified value.
@@ -670,7 +673,8 @@ public interface AnnotationValues {
          * @throws NullPointerException if {@code element} or {@code value} are {@code null}.
          * @since 0.0.0
          */
-        @NonNull @This Builder value(@NonNull AnnotationElement element, boolean @NonNull ... value);
+        @NonNull @This Builder value(@NonNull AnnotationElement element,
+                                     boolean @NonNull ... value);
 
         /**
          * Sets the value of the specified element to the specified value.
@@ -692,7 +696,8 @@ public interface AnnotationValues {
          * @throws NullPointerException if {@code element} is null or {@code value} contains or is {@code null}.
          * @since 0.0.0
          */
-        @NonNull @This Builder value(@NonNull AnnotationElement element, @NonNull String @NonNull ... value);
+        @NonNull @This Builder value(@NonNull AnnotationElement element,
+                                     @NonNull String @NonNull ... value);
 
         /**
          * Sets the value of the specified element to the specified value.
@@ -717,7 +722,8 @@ public interface AnnotationValues {
          * @throws NullPointerException if {@code element} is null or {@code value} contains or is {@code null}.
          * @since 0.0.0
          */
-        @NonNull @This Builder value(@NonNull AnnotationElement element, @NonNull AnnotationValues @NonNull ... value);
+        @NonNull @This Builder value(@NonNull AnnotationElement element,
+                                     @NonNull AnnotationValues @NonNull ... value);
 
         /**
          * Sets the value of the specified element to the specified value.
@@ -728,7 +734,8 @@ public interface AnnotationValues {
          * @throws NullPointerException if {@code element} is null or {@code value} contains or is {@code null}.
          * @since 0.0.0
          */
-        @NonNull @This Builder value(@NonNull AnnotationElement element, @NonNull Class<?> @NonNull ... value);
+        @NonNull @This Builder value(@NonNull AnnotationElement element,
+                                     @NonNull Class<?> @NonNull ... value);
 
         /**
          * Builds the annotation values.
