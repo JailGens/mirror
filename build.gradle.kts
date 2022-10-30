@@ -51,6 +51,12 @@ tasks.getByName<JavaCompile>("compileTestJava") {
     options.compilerArgs.add("-parameters")
 }
 
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(true)
+    }
+}
+
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
 }
