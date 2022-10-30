@@ -126,22 +126,6 @@ class MethodTest {
         assertEquals(void.class, method2Type);
     }
 
-    @Test
-    void Given_Method_When_GetName_Then_ReturnsName() {
-
-        class TestClass {
-            void methodName() {}
-        }
-        final Method<TestClass, ?> method = mirror.reflect(TestClass.class)
-                .getMethods()
-                .iterator()
-                .next();
-
-        final String name = method.getName();
-
-        assertEquals("methodName", name);
-    }
-
     abstract static class ModifiersTestClass {
         public abstract void method();
         protected static synchronized strictfp void staticMethod() {}
