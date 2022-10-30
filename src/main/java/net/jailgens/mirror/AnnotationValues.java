@@ -32,8 +32,7 @@ public interface AnnotationValues {
     @Pure
     static @NonNull AnnotationValues empty() {
 
-        // TODO(Sparky983): implement
-        throw new RuntimeException("Not implemented yet");
+        return AnnotationValuesImpl.EMPTY;
     }
 
     /**
@@ -45,8 +44,7 @@ public interface AnnotationValues {
     @SideEffectFree
     static @NewObject @NonNull Builder builder() {
 
-        // TODO(Sparky983): implement
-        throw new RuntimeException("Not implemented yet");
+        return new AnnotationValuesImpl.BuilderImpl();
     }
 
     /**

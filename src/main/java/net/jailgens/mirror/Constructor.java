@@ -16,9 +16,12 @@ public interface Constructor<T extends @NonNull Object> extends
      *
      * @param arguments the arguments.
      * @return the constructed objects.
+     * @throws ClassCastException if any of {@code arguments} could not be cast to this
+     * constructor's parameter types.
+     * @throws IllegalArgumentException if {@code arguments != getParameters().size()}.
+     * @throws IllegalStateException if this constructor is not instantiatable (part of abstract
+     * class).
      * @throws InvocationException if the target constructor threw an exception.
-     * <p>
-     * The cause of the invocation exception is the exception that the target threw.
      * @throws NullPointerException if {@code arguments} is {@code null}.
      */
     @NonNull T construct(@Nullable Object @NonNull ... arguments);

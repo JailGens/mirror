@@ -63,7 +63,7 @@ public interface TypeDefinition<T extends @NonNull Object> extends Annotated {
      * @since 0.0.0
      */
     @Pure
-    @NonNull Class<? extends @NonNull Object> getRawType();
+    @NonNull Class<T> getRawType();
 
     @Pure
     @NonNull Collection<@NonNull Field<@NonNull T, ? extends @NonNull Object>> getFields();
@@ -85,15 +85,6 @@ public interface TypeDefinition<T extends @NonNull Object> extends Annotated {
      */
     @Pure
     @NonNull Collection<@NonNull Method<@NonNull T, ? extends @Nullable Object>> getMethods();
-
-    /**
-     * Gets this type's invokable members.
-     *
-     * @return the type's invokable members.
-     * @since 0.0.0
-     */
-    @Pure
-    @NonNull Collection<@NonNull Invokable<@NonNull T, ? extends @Nullable Object>> getInvokables();
 
     /**
      * Gets this type's members.

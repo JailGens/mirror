@@ -18,19 +18,6 @@ import java.util.List;
 public interface Invokable<R extends @NonNull Object, T extends @Nullable Object> extends Annotated, Member<R>, Typed<T> {
 
     /**
-     * Invokes this invokable on the receiver with the specified arguments.
-     *
-     * @param receiver the receiver, may optionally be {@code null} if this has no receiver.
-     * @param arguments the arguments to call this with.
-     * @return the result.
-     * @throws InvocationException if the target invokable (executable) threw an exception.
-     * @throws NullPointerException if {@code receiver} is {@code null}, and this requires a receiver, or
-     * {@code arguments} is {@code null}
-     * @since 0.0.0
-     */
-    @NonNull T invoke(@Nullable R receiver, @Nullable Object @NonNull ... arguments);
-
-    /**
      * Gets the parameters of this invokable.
      *
      * @return the parameters of this.

@@ -1,6 +1,10 @@
 package net.jailgens.mirror;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.checkerframework.dataflow.qual.Pure;
+
+import java.util.Objects;
 
 /**
  * An exception that is thrown if the target threw an exception.
@@ -10,44 +14,41 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  */
 public class InvocationException extends RuntimeException {
 
-    /**
-     * Constructs an invocation exception.
-     *
-     * @since 0.0.0
-     */
-    public InvocationException() {}
+    private final @NonNull Throwable targetException;
 
     /**
-     * Constructs a new invocation exception with the specified detail message.
+     * Constructs a new invocation exception with the specified detail message and target exception.
      *
      * @param message the detail message.
+     * @param targetException the target exception.
      * @since 0.0.0
      */
-    public InvocationException(final @Nullable String message) {
+    @Pure
+    public InvocationException(final @Nullable String message,
+                               final @NonNull Throwable targetException) {
 
-        super(message);
+        super(message, targetException);
+        Objects.requireNonNull(targetException, "targetException cannot be null");
+        this.targetException = targetException;
     }
 
     /**
-     * Constructs a new invocation exception with the specified detail message and cause.
+     * Constructs a new invocation exception with the specified target exception.
      *
-     * @param message the detail message.
-     * @param cause the cause.
+     * @param targetException the target exception.
      * @since 0.0.0
      */
-    public InvocationException(final @Nullable String message, final @Nullable Throwable cause) {
+    @Pure
+    public InvocationException(final @NonNull Throwable targetException) {
 
-        super(message, cause);
+        super(targetException);
+        Objects.requireNonNull(targetException, "targetException cannot be null");
+        this.targetException = targetException;
     }
 
-    /**
-     * Constructs a new invocation exception with the specified cause.
-     *
-     * @param cause the cause.
-     * @since 0.0.0
-     */
-    public InvocationException(final @Nullable Throwable cause) {
+    @Pure
+    public @NonNull Throwable getTargetException() {
 
-        super(cause);
+        return targetException;
     }
 }

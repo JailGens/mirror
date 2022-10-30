@@ -6,6 +6,7 @@ import org.checkerframework.dataflow.qual.Pure;
 import org.checkerframework.dataflow.qual.SideEffectFree;
 
 import java.lang.annotation.Annotation;
+import java.util.Objects;
 
 /**
  * Represents an annotation element (method).
@@ -34,9 +35,16 @@ public interface AnnotationElement {
     @SideEffectFree
     static @NewObject @NonNull AnnotationElement of(final @NonNull String annotationType, final @NonNull String name) {
 
-        // TODO(Sparky983): implement
-        throw new RuntimeException("Not implemented yet");
+        return new AnnotationElementImpl(annotationType, name);
     }
+
+    /*
+    The reason we have 2 different methods with the exact same body
+    (of(Class<? extends Annotation>, String) and of(ParameterizedType<? extends Annotation>, String))
+    is because if we use the java.lang.reflect.Type interface it would remove all the type safety,
+    by defaulting that. We encourage that callers use of(String, String) and call
+    java.lang.reflect.Type.getTypeName() explicitly if they would like to remove type safety.
+     */
 
     /**
      * Creates a new annotation element with the specified annotation type and name.
@@ -51,8 +59,8 @@ public interface AnnotationElement {
     static @NewObject @NonNull AnnotationElement of(
             final @NonNull Class<? extends @NonNull Annotation> annotationType, final @NonNull String name) {
 
-        // TODO(Sparky983): implement
-        throw new RuntimeException("Not implemented yet");
+        Objects.requireNonNull(annotationType, "annotationType cannot be null");
+        return of(annotationType.getTypeName(), name);
     }
 
     /**
@@ -68,8 +76,8 @@ public interface AnnotationElement {
     static @NewObject @NonNull AnnotationElement of(
             final @NonNull ParameterizedType<? extends @NonNull Annotation> annotationType, final @NonNull String name) {
 
-        // TODO(Sparky983): implement
-        throw new RuntimeException("Not implemented yet");
+        Objects.requireNonNull(annotationType, "annotationType");
+        return of(annotationType.getTypeName(), name);
     }
 
     /**
@@ -98,7 +106,7 @@ public interface AnnotationElement {
     static @NewObject @NonNull AnnotationElement value(
             final @NonNull Class<? extends @NonNull Annotation> annotationType) {
 
-        return of(annotationType, VALUE);
+        return value(annotationType.getTypeName());
     }
 
     /**
@@ -113,17 +121,8 @@ public interface AnnotationElement {
     static @NewObject @NonNull AnnotationElement value(
             final @NonNull ParameterizedType<? extends @NonNull Annotation> annotationType) {
 
-        return of(annotationType, VALUE);
+        return value(annotationType.getTypeName());
     }
-
-    /**
-     * Gets the name of this annotation element.
-     *
-     * @return the name of this annotation element.
-     * @since 0.0.0
-     */
-    @Pure
-    @NonNull String getName();
 
     /**
      * Returns the type name of the clas that declares this element.
@@ -133,4 +132,13 @@ public interface AnnotationElement {
      */
     @Pure
     @NonNull String getAnnotationType();
+
+    /**
+     * Gets the name of this annotation element.
+     *
+     * @return the name of this annotation element.
+     * @since 0.0.0
+     */
+    @Pure
+    @NonNull String getName();
 }

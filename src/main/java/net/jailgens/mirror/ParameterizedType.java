@@ -6,9 +6,11 @@ import org.checkerframework.dataflow.qual.Pure;
 import org.checkerframework.dataflow.qual.SideEffectFree;
 
 import java.lang.reflect.Type;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -33,11 +35,11 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
      */
     @SideEffectFree
     @SafeVarargs
-    static <T extends @Nullable Object> @NonNull ParameterizedType<T> of(final @NonNull Class<T> rawType,
-                final @NonNull ParameterizedType<? extends @NonNull Object> @NonNull ... typeArguments) {
+    static <T extends @Nullable Object> @NonNull ParameterizedType<T> of(
+            final @NonNull Class<T> rawType,
+            final @NonNull ParameterizedType<? extends @Nullable Object> @NonNull ... typeArguments) {
 
-        // TODO(Sparky983): implement
-        throw new RuntimeException("Not implemented yet");
+        return new ParameterizedTypeImpl<>(AnnotationValues.empty(), rawType, typeArguments);
     }
 
     /**
@@ -53,11 +55,16 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
      */
     @SideEffectFree
     @SafeVarargs
-    static <T extends @NonNull Object> @NonNull ParameterizedType<T> of(final @NonNull Class<@NonNull T> rawType,
-                final @NonNull Class<? extends @NonNull Object> @NonNull ... typeArguments) {
+    static <T extends @NonNull Object> @NonNull ParameterizedType<T> of(
+            final @NonNull Class<@NonNull T> rawType,
+            final @NonNull Class<? extends @NonNull Object> @NonNull ... typeArguments) {
 
-        // TODO(Sparky983): implement
-        throw new RuntimeException("Not implemented yet");
+        Objects.requireNonNull(typeArguments, "typeArguments cannot be null");
+
+        return of(rawType,
+                Arrays.stream(typeArguments)
+                        .<ParameterizedType<?>>map(ParameterizedType::of)
+                        .toArray(ParameterizedType[]::new));
     }
 
     /**
@@ -72,8 +79,9 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
     @SideEffectFree
     static <T extends @NonNull Object> @NonNull ParameterizedType<T> of(final @NonNull Class<@NonNull T> rawType) {
 
-        // TODO(Sparky983): implement
-        throw new RuntimeException("Not implemented yet");
+        Objects.requireNonNull(rawType, "rawType cannot be null");
+
+        return new ParameterizedTypeImpl<>(AnnotationValues.empty(), rawType);
     }
 
     /**
@@ -87,13 +95,13 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
      * @throws NullPointerException if {@code key} or {@code value} are {@code null}.
      * @since 0.0.0
      */
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @SideEffectFree
     static <K extends @NonNull Object, V extends @NonNull Object>
-            @NonNull ParameterizedType<@NonNull Map<@NonNull K, @NonNull V>> listOf(
+            @NonNull ParameterizedType<@NonNull Map<@NonNull K, @NonNull V>> mapOf(
             final @NonNull Class<@NonNull K> k, final @NonNull Class<@NonNull V> v) {
 
-        // TODO(Sparky983): implement
-        throw new RuntimeException("Not implemented yet");
+        return of((Class) Map.class, k, v);
     }
 
     /**
@@ -105,12 +113,12 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
      * @throws NullPointerException if {@code e} is {@code null}.
      * @since 0.0.0
      */
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @SideEffectFree
     static <E extends @NonNull Object> @NonNull ParameterizedType<@NonNull List<@NonNull E>> listOf(
             final @NonNull Class<@NonNull E> e) {
 
-        // TODO(Sparky983): implement
-        throw new RuntimeException("Not implemented yet");
+        return of((Class) List.class, e);
     }
 
     /**
@@ -122,12 +130,12 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
      * @throws NullPointerException if {@code e} is {@code null}.
      * @since 0.0.0
      */
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @SideEffectFree
     static <E extends @NonNull Object> @NonNull ParameterizedType<@NonNull Set<@NonNull E>> setOf(
         final @NonNull Class<@NonNull E> e) {
 
-        // TODO(Sparky983): implement
-        throw new RuntimeException("Not implemented yet");
+        return of((Class) Set.class, e);
     }
 
     /**
@@ -139,12 +147,12 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
      * @throws NullPointerException if {@code e} is {@code null}.
      * @since 0.0.0
      */
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @SideEffectFree
     static <E extends @NonNull Object> @NonNull ParameterizedType<@NonNull Collection<@NonNull E>> collectionOf(
         final @NonNull Class<@NonNull E> e) {
 
-        // TODO(Sparky983): implement
-        throw new RuntimeException("Not implemented yet");
+        return of((Class) Collection.class, e);
     }
 
     /**
@@ -155,4 +163,7 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
      */
     @Pure
     @NonNull Class<T> getRawType();
+
+    @Pure
+    @NonNull List<@NonNull ParameterizedType<? extends @Nullable Object>> getTypeArguments();
 }
