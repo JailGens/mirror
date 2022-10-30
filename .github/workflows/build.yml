@@ -70,3 +70,6 @@ jobs:
 
       - name: Publish
         run: ./gradlew publish
+        env:
+          ORG_GRADLE_PROJECT_sparkyUsername: ${{ secrets.MAVEN_NAME }}
+          ORG_GRADLE_PROJECT_sparkyPassword: ${{ secrets.MAVEN_TOKEN }}
