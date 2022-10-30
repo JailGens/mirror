@@ -43,7 +43,6 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
-          flags: unit-tests
 
   publish:
     if: github.event_name == 'push' || github.event_name == 'release'
