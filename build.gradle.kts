@@ -1,10 +1,14 @@
 plugins {
-    java
+    `java-library`
+    `maven-publish`
+    jacoco
 }
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
+    withSourcesJar()
+    withJavadocJar()
 }
 
 repositories {
@@ -19,8 +23,28 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
-tasks.getByName<JavaCompile>("compileJava") {
-    options.compilerArgs.add("-parameters")
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            artifactId = "mirror"
+
+            from(components["java"])
+        }
+    }
+    repositories {
+        maven {
+            name = "sparky"
+            url = if (project.version.toString().endsWith("-SNAPSHOT")) {
+                uri("https://repo.sparky983.me/snapshots")
+            } else {
+                uri("https://repo.sparky983.me/releases")
+            }
+            credentials(PasswordCredentials::class)
+            authentication {
+                create<BasicAuthentication>("basic")
+            }
+        }
+    }
 }
 
 tasks.getByName<JavaCompile>("compileTestJava") {
