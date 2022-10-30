@@ -14,6 +14,9 @@ import java.util.Objects;
  */
 public class InvocationException extends RuntimeException {
 
+    /**
+     * The target exception.
+     */
     private final @NonNull Throwable targetException;
 
     /**
@@ -46,6 +49,12 @@ public class InvocationException extends RuntimeException {
         this.targetException = targetException;
     }
 
+    /**
+     * Returns the exception that was thrown by the target during the invocation.
+     *
+     * @return the exception that was thrown by the target during the invocation.
+     * @since 0.0.0
+     */
     @Pure
     public @NonNull Throwable getTargetException() {
 

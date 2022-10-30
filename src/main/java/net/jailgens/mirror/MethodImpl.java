@@ -11,6 +11,12 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * The default {@link Method} implementation.
+ *
+ * @param <R> the receiver type. for static methods, this is the declaring class.
+ * @param <T> the method's return type.
+ */
 final class MethodImpl<T extends @NonNull Object, R extends @Nullable Object> implements Method<T, R>{
 
     private final @NonNull TypeDefinition<@NonNull T> declaringType;

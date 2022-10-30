@@ -9,6 +9,13 @@ import java.util.Set;
 
 import static java.lang.reflect.Modifier.isStatic;
 
+/**
+ * The default {@link Field} implementation.
+ *
+ * @author Sparky983
+ * @param <R> the type that declares the field.
+ * @param <T> the type of the field.
+ */
 final class FieldImpl<R extends @NonNull Object, T extends @Nullable Object> implements Field<R, T> {
 
     private final @NonNull TypeDefinition<@NonNull R> declaringType;

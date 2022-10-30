@@ -8,7 +8,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
 
-class ParameterizedTypeImpl<T extends @Nullable Object> implements ParameterizedType<@NonNull T> {
+/**
+ * The default {@link ParameterizedType} implementation.
+ *
+ * @author Sparky983
+ * @param <T> the type.
+ */
+final class ParameterizedTypeImpl<T extends @Nullable Object> implements ParameterizedType<@NonNull T> {
 
     private final @NonNull AnnotationValues annotations;
     private final @NonNull Class<@NonNull T> rawType;

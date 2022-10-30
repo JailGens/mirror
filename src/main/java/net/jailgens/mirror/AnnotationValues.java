@@ -222,6 +222,7 @@ public interface AnnotationValues {
      *
      * @param annotationElement the element.
      * @param enumType the enum type.
+     * @param <T> the enum type.
      * @return the enum value of the specified element.
      * @throws ClassCastException if the value is not of type {@code enumType}.
      * @throws NullPointerException if {@code annotationElement} or {@code enumType} are {@code null}.
@@ -247,6 +248,7 @@ public interface AnnotationValues {
      * Returns an optional containing the class value of the specified element.
      *
      * @param annotationElement the element.
+     * @param <T> the enum type.
      * @return the class value of the specified element.
      * @throws ClassCastException if the value is not of type {@link Class}.
      * @throws NullPointerException if {@code annotationElement} is {@code null}.
@@ -389,6 +391,7 @@ public interface AnnotationValues {
      *
      * @param annotationElement the element.
      * @param enumType enum values type.
+     * @param <T> the enum type.
      * @return the integer value of the specified element.
      * @throws ClassCastException if the value is not of type {@code enumType[]}.
      * @throws NullPointerException if {@code annotationElement} or {@code enumType} are {@code null}.
@@ -702,6 +705,7 @@ public interface AnnotationValues {
          *
          * @param element the element.
          * @param value the value.
+         * @param <T> the enum type.
          * @return the builder instance (for chaining).
          * @throws ClassCastException if {@code value} contains different types of enums.
          * @throws NullPointerException if {@code element} is null or {@code value} contains or is {@code null}.

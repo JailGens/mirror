@@ -28,12 +28,13 @@ public interface Field<R extends @NonNull Object, T extends @Nullable Object> ex
 
 
     /**
-     * Gets the value of this field.
+     * Sets the value of this field.
      *
-     * @param receiver the object to retrieve the field value from, may optionally be {@code null}
+     * @param receiver the object to set the field value on, may optionally be {@code null}
      * if this has no receiver (static field).
+     * @param value the value.
      * @throws NullPointerException if {@code receiver} is {@code null}, and this requires a
-     *      * receiver.
+     * receiver.
      * @since 0.0.0
      */
     void set(@Nullable R receiver, @NonNull T value);

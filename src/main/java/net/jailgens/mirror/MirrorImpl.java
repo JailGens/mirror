@@ -5,7 +5,8 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 final class MirrorImpl implements Mirror {
 
     @Override
-    public <T> @NonNull TypeDefinition<T> reflect(final @NonNull Class<T> cls) {
+    public <T extends @NonNull Object> @NonNull TypeDefinition<T> reflect(
+            final @NonNull Class<T> cls) {
 
         return new TypeDefinitionImpl<>(cls);
     }

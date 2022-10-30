@@ -156,14 +156,20 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
     }
 
     /**
-     * Gets parameterized type of this as a raw `java.lang.reflect` class.
+     * Gets this parameterized type as a raw {@link java.lang.Class}.
      *
-     * @return this parameterized type of this as a raw `java.lang.reflect` clas.
+     * @return this parameterized type as a raw {@link java.lang.Class}.
      * @since 0.0.0
      */
     @Pure
     @NonNull Class<T> getRawType();
 
+    /**
+     * Gets the type arguments of this.
+     *
+     * @return the type arguments of this
+     * @since 0.0.0
+     */
     @Pure
     @NonNull List<@NonNull ParameterizedType<? extends @Nullable Object>> getTypeArguments();
 }

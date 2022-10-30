@@ -65,6 +65,12 @@ public interface TypeDefinition<T extends @NonNull Object> extends Annotated {
     @Pure
     @NonNull Class<T> getRawType();
 
+    /**
+     * Gets the fields of this type definition.
+     *
+     * @return the fields of this type definition.
+     * @since 0.0.0
+     */
     @Pure
     @NonNull Collection<@NonNull Field<@NonNull T, ? extends @NonNull Object>> getFields();
 

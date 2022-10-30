@@ -7,6 +7,12 @@ import org.checkerframework.dataflow.qual.Pure;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * The default {@link Parameter} implementation.
+ *
+ * @author Sparky983
+ * @param <T>
+ */
 final class ParameterImpl<T extends @Nullable Object> implements Parameter<T> {
 
     private final java.lang.reflect.@NonNull Parameter parameter;

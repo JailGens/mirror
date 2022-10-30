@@ -6,6 +6,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 /**
  * A constructor.
  *
+ * @author Sparky983
  * @param <T> the type this constructor constructs.
  */
 public interface Constructor<T extends @NonNull Object> extends

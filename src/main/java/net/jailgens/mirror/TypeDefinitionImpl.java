@@ -11,6 +11,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * The default {@link TypeDefinition} implementation.
+ *
+ * @author Sparky983
+ * @param <T> The type.
+ */
 final class TypeDefinitionImpl<T extends @NonNull Object> implements TypeDefinition<T> {
 
     private final @NonNull Class<@NonNull T> rawType;

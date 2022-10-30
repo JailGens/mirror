@@ -11,6 +11,12 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * The default {@link Constructor} implementation.
+ *
+ * @author Sparky983
+ * @param <T> the type this constructor constructs.
+ */
 final class ConstructorImpl<T extends @NonNull Object> implements Constructor<T> {
 
     private final @NonNull TypeDefinition<@NonNull T> declaringType;
