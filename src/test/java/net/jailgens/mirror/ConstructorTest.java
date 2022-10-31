@@ -178,7 +178,7 @@ class ConstructorTest {
 
     static class ParametersTestClass {
 
-        ParametersTestClass(final String p1, @TestAnnotation("value") final Integer p2) {
+        ParametersTestClass(final String p1, @TestAnnotation("value") Integer p2) {
 
         }
     }
