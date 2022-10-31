@@ -69,7 +69,7 @@ class MethodTest {
         class TestClass {
 
             void method(final @TestAnnotation("param1") String param1,
-                        @TestAnnotation("param2") final Integer param2) {
+                        @TestAnnotation("param2") Integer param2) {
 
             }
         }
