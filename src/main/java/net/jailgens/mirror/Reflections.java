@@ -45,7 +45,7 @@ final class Reflections {
                             elementMethod.invoke(annotation));
                 }
             }
-        } catch (ReflectiveOperationException e) {
+        } catch (final ReflectiveOperationException e) {
             throw new RuntimeException(e);
         }
 

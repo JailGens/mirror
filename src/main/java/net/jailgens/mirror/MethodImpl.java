@@ -105,11 +105,11 @@ final class MethodImpl<T extends @NonNull Object, R extends @Nullable Object> im
         try {
             method.setAccessible(true);
             return (R) method.invoke(receiver, arguments);
-        } catch (InvocationTargetException e) {
+        } catch (final InvocationTargetException e) {
             throw new InvocationException(e.getTargetException());
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             throw new ClassCastException(e.getMessage());
-        } catch (IllegalAccessException e) {
+        } catch (final IllegalAccessException e) {
             throw new RuntimeException(e);
         } finally {
             method.setAccessible(false);

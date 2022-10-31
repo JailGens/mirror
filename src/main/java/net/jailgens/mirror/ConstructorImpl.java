@@ -61,13 +61,13 @@ final class ConstructorImpl<T extends @NonNull Object> implements Constructor<T>
         try {
             constructor.setAccessible(true);
             return constructor.newInstance(arguments);
-        } catch (InvocationTargetException e) {
+        } catch (final InvocationTargetException e) {
             throw new InvocationException(e.getTargetException());
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             throw new ClassCastException(e.getMessage());
-        } catch (InstantiationException e) {
+        } catch (final InstantiationException e) {
             throw new IllegalStateException("Constructor must be instantiatable");
-        } catch (IllegalAccessException e) {
+        } catch (final IllegalAccessException e) {
             throw new RuntimeException(e);
         } finally {
             constructor.setAccessible(false);
