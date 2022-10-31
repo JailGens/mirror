@@ -50,7 +50,7 @@ final class ConstructorImpl<T extends @NonNull Object> implements Constructor<T>
     }
 
     @Override
-    public @NonNull T construct(@Nullable Object @NonNull ... arguments) {
+    public @NonNull T construct(final @Nullable Object @NonNull ... arguments) {
 
         Objects.requireNonNull(arguments, "arguments cannot be null");
 

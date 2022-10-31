@@ -41,9 +41,16 @@ final class AnnotationElementImpl implements AnnotationElement {
     @Override
     public boolean equals(final @Nullable Object o) {
 
-        if (this == o) return true;
-        if (!(o instanceof AnnotationElement)) return false;
-        AnnotationElement that = (AnnotationElement) o;
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof AnnotationElement)) {
+            return false;
+        }
+
+        final AnnotationElement that = (AnnotationElement) o;
+
         return annotationType.equals(that.getAnnotationType()) && name.equals(that.getName());
     }
 

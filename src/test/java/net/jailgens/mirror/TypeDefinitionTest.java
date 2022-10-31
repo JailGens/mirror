@@ -30,7 +30,7 @@ class TypeDefinitionTest {
         class TestClass {
 
         }
-        TypeDefinition<TestClass> typeDefinition = mirror.reflect(TestClass.class);
+        final TypeDefinition<TestClass> typeDefinition = mirror.reflect(TestClass.class);
 
         final AnnotationValues annotations = typeDefinition.getAnnotations();
 

@@ -83,7 +83,7 @@ class ConstructorTest {
 
         final String argument;
 
-        StringValueClass(String argument) {
+        StringValueClass(final String argument) {
 
             this.argument = argument;
         }
@@ -101,7 +101,7 @@ class ConstructorTest {
 
     static class InvalidArgumentsTypesTestClass {
 
-        InvalidArgumentsTypesTestClass(String argument) {
+        InvalidArgumentsTypesTestClass(final String argument) {
 
         }
     }
@@ -120,11 +120,11 @@ class ConstructorTest {
 
         }
 
-        ArgumentsLengthTestClass(String p1) {
+        ArgumentsLengthTestClass(final String p1) {
 
         }
 
-        ArgumentsLengthTestClass(String p1, String p2) {
+        ArgumentsLengthTestClass(final String p1, final String p2) {
 
         }
     }
@@ -178,7 +178,7 @@ class ConstructorTest {
 
     static class ParametersTestClass {
 
-        ParametersTestClass(final String p1, @TestAnnotation("value") Integer p2) {
+        ParametersTestClass(final String p1, @TestAnnotation("value") final Integer p2) {
 
         }
     }

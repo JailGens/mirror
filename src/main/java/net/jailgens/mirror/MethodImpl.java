@@ -94,7 +94,7 @@ final class MethodImpl<T extends @NonNull Object, R extends @Nullable Object> im
 
     @SuppressWarnings("unchecked")
     @Override
-    public @NonNull R invoke(final @Nullable T receiver, @Nullable Object @NonNull ... arguments) {
+    public @NonNull R invoke(final @Nullable T receiver, final @Nullable Object @NonNull ... arguments) {
 
         Objects.requireNonNull(arguments, "arguments cannot be null");
 

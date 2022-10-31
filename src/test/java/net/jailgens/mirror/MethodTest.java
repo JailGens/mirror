@@ -69,7 +69,7 @@ class MethodTest {
         class TestClass {
 
             void method(final @TestAnnotation("param1") String param1,
-                        @TestAnnotation("param2") Integer param2) {
+                        @TestAnnotation("param2") final Integer param2) {
 
             }
         }
@@ -200,7 +200,6 @@ class MethodTest {
 
             }
 
-            ;
         }
         final Method<TestClass, Void> method = reflectMethod(TestClass.class, "testMethod");
 
@@ -216,7 +215,7 @@ class MethodTest {
 
             String arg;
 
-            String method(String arg) {
+            String method(final String arg) {
 
                 this.arg = arg;
                 return "return value";
@@ -235,7 +234,7 @@ class MethodTest {
 
         static String arg;
 
-        static String method(String arg) {
+        static String method(final String arg) {
 
             StaticMethodTestClass.arg = arg;
             return "return value";
@@ -271,7 +270,7 @@ class MethodTest {
 
         class TestClass {
 
-            void method(String s) {
+            void method(final String s) {
 
             }
         }
@@ -285,7 +284,7 @@ class MethodTest {
 
         class TestClass {
 
-            void method(String arg) {
+            void method(final String arg) {
 
             }
         }
