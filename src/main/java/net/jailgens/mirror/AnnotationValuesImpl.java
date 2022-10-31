@@ -51,7 +51,7 @@ final class AnnotationValuesImpl implements AnnotationValues {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final @Nullable Object o) {
 
         if (this == o) {
             return true;
@@ -61,7 +61,7 @@ final class AnnotationValuesImpl implements AnnotationValues {
             return false;
         }
 
-        AnnotationValuesImpl that = (AnnotationValuesImpl) o;
+        final AnnotationValuesImpl that = (AnnotationValuesImpl) o;
 
         return annotations.equals(that.annotations) &&
                 values.equals(that.values);
@@ -94,7 +94,7 @@ final class AnnotationValuesImpl implements AnnotationValues {
             annotations.get(annotationType).put(name, value);
         }
 
-        for (Map.Entry<String, Map<String, Object>> entry : annotations.entrySet()) {
+        for (final Map.Entry<String, Map<String, Object>> entry : annotations.entrySet()) {
             final String annotationType = entry.getKey();
             final Map<String, Object> values = entry.getValue();
 
@@ -103,7 +103,7 @@ final class AnnotationValuesImpl implements AnnotationValues {
                     .append('(');
 
             int i = 1;
-            for (Map.Entry<String, Object> valueEntry : values.entrySet()) {
+            for (final Map.Entry<String, Object> valueEntry : values.entrySet()) {
                 final String elementName = valueEntry.getKey();
                 final Object elementValue = valueEntry.getValue();
 
@@ -172,7 +172,7 @@ final class AnnotationValuesImpl implements AnnotationValues {
     private <T> @NonNull T getObjectOrDefault(final @NonNull AnnotationElement annotationElement,
                                               final @NonNull T defaultValue) {
 
-        T value = getObject(annotationElement);
+        final T value = getObject(annotationElement);
 
         if (value == null) {
             return defaultValue;
@@ -330,8 +330,8 @@ final class AnnotationValuesImpl implements AnnotationValues {
     }
 
     @Override
-    public @NonNull <T extends @NonNull Enum<@NonNull T>> List<@NonNull T> getEnums(@NonNull AnnotationElement annotationElement,
-                                                                                    @NonNull Class<@NonNull T> enumType) {
+    public @NonNull <T extends @NonNull Enum<@NonNull T>> List<@NonNull T> getEnums(@NonNull final AnnotationElement annotationElement,
+                                                                                    @NonNull final Class<@NonNull T> enumType) {
 
         return getObjectOrDefault(annotationElement, List.of());
     }
@@ -417,27 +417,27 @@ final class AnnotationValuesImpl implements AnnotationValues {
         }
 
         @Override
-        public @NonNull @This Builder value(final @NonNull AnnotationElement element, float value) {
+        public @NonNull @This Builder value(final @NonNull AnnotationElement element, final float value) {
 
             return boxValue(element, value);
         }
 
         @Override
         public @NonNull @This Builder value(final @NonNull AnnotationElement element,
-                                            double value) {
+                                            final double value) {
 
             return boxValue(element, value);
         }
 
         @Override
         public @NonNull @This Builder value(final @NonNull AnnotationElement element,
-                                            boolean value) {
+                                            final boolean value) {
 
             return boxValue(element, value);
         }
 
         @Override
-        public @NonNull @This Builder value(final @NonNull AnnotationElement element, char value) {
+        public @NonNull @This Builder value(final @NonNull AnnotationElement element, final char value) {
 
             return boxValue(element, value);
         }

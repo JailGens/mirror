@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@SuppressWarnings("ZeroLengthArrayAllocation")
 class AnnotationValuesTest {
 
     @Test
@@ -220,7 +221,7 @@ class AnnotationValuesTest {
     void Given_AnnotatedAnnotationValuesWithIntValue_When_GetInt_Then_ReturnsValue() {
 
         final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), (int) 1)
+                .value(AnnotationElement.value(Annotation.class), 1)
                 .build();
 
         final OptionalInt testAnnotationElementValue =
@@ -909,7 +910,7 @@ class AnnotationValuesTest {
     @Test
     void Given_AnnotationValuesWithNotAnnotationElement_When_GetAnnotation_Then_Throws() {
 
-        AnnotationValues values = AnnotationValues.builder()
+        final AnnotationValues values = AnnotationValues.builder()
                 .value(AnnotationElement.value(Annotation.class), "not annotation")
                 .build();
 
@@ -920,7 +921,7 @@ class AnnotationValuesTest {
     @Test
     void Given_AnnotationValuesWithNotClassElement_When_GetClass_Then_Throws() {
 
-        AnnotationValues values = AnnotationValues.builder()
+        final AnnotationValues values = AnnotationValues.builder()
                 .value(AnnotationElement.value(Annotation.class), "not class")
                 .build();
 
@@ -931,7 +932,7 @@ class AnnotationValuesTest {
     @Test
     void Given_AnnotationValuesWithNotIntsElement_When_GetInts_Then_Throws() {
 
-        AnnotationValues values = AnnotationValues.builder()
+        final AnnotationValues values = AnnotationValues.builder()
                 .value(AnnotationElement.value(Annotation.class), "not ints")
                 .build();
 
@@ -942,7 +943,7 @@ class AnnotationValuesTest {
     @Test
     void Given_AnnotationValuesWithNotBytesElement_When_GetBytes_Then_Throws() {
 
-        AnnotationValues values = AnnotationValues.builder()
+        final AnnotationValues values = AnnotationValues.builder()
                 .value(AnnotationElement.value(Annotation.class), "not bytes")
                 .build();
 
@@ -953,7 +954,7 @@ class AnnotationValuesTest {
     @Test
     void Given_AnnotationValuesWithNotShortsElement_When_GetShorts_Then_Throws() {
 
-        AnnotationValues values = AnnotationValues.builder()
+        final AnnotationValues values = AnnotationValues.builder()
                 .value(AnnotationElement.value(Annotation.class), "not shorts")
                 .build();
 
@@ -964,7 +965,7 @@ class AnnotationValuesTest {
     @Test
     void Given_AnnotationValuesWithNotLongsElement_When_GetLongs_Then_Throws() {
 
-        AnnotationValues values = AnnotationValues.builder()
+        final AnnotationValues values = AnnotationValues.builder()
                 .value(AnnotationElement.value(Annotation.class), "not longs")
                 .build();
 
@@ -975,7 +976,7 @@ class AnnotationValuesTest {
     @Test
     void Given_AnnotationValuesWithNotFloatsElement_When_GetFloats_Then_Throws() {
 
-        AnnotationValues values = AnnotationValues.builder()
+        final AnnotationValues values = AnnotationValues.builder()
                 .value(AnnotationElement.value(Annotation.class), "not floats")
                 .build();
 
@@ -986,7 +987,7 @@ class AnnotationValuesTest {
     @Test
     void Given_AnnotationValuesWithNotDoublesElement_When_GetDoubles_Then_Throws() {
 
-        AnnotationValues values = AnnotationValues.builder()
+        final AnnotationValues values = AnnotationValues.builder()
                 .value(AnnotationElement.value(Annotation.class), "not doubles")
                 .build();
 
@@ -997,7 +998,7 @@ class AnnotationValuesTest {
     @Test
     void Given_AnnotationValuesWithNotBooleansElement_When_GetBooleans_Then_Throws() {
 
-        AnnotationValues values = AnnotationValues.builder()
+        final AnnotationValues values = AnnotationValues.builder()
                 .value(AnnotationElement.value(Annotation.class), "not booleans")
                 .build();
 
@@ -1008,7 +1009,7 @@ class AnnotationValuesTest {
     @Test
     void Given_AnnotationValuesWithNotCharsElement_When_GetChars_Then_Throws() {
 
-        AnnotationValues values = AnnotationValues.builder()
+        final AnnotationValues values = AnnotationValues.builder()
                 .value(AnnotationElement.value(Annotation.class), "not chars")
                 .build();
 
@@ -1019,7 +1020,7 @@ class AnnotationValuesTest {
     @Test
     void Given_AnnotationValuesWithNotStringsElement_When_GetStrings_Then_Throws() {
 
-        AnnotationValues values = AnnotationValues.builder()
+        final AnnotationValues values = AnnotationValues.builder()
                 .value(AnnotationElement.value(Annotation.class), "not strings")
                 .build();
 
@@ -1030,7 +1031,7 @@ class AnnotationValuesTest {
     @Test
     void Given_AnnotationValuesWithNotEnumsElement_When_GetEnums_Then_Throws() {
 
-        AnnotationValues values = AnnotationValues.builder()
+        final AnnotationValues values = AnnotationValues.builder()
                 .value(AnnotationElement.value(Annotation.class), "not enums")
                 .build();
 
