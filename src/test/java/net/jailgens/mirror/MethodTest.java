@@ -154,6 +154,8 @@ class MethodTest {
         private final void finalMethod() {
 
         }
+
+        native void nativeMethod();
     }
 
     @Test
@@ -162,14 +164,17 @@ class MethodTest {
         final Method<?, ?> method = reflectMethod(ModifiersTestClass.class, "method");
         final Method<?, ?> staticMethod = reflectMethod(ModifiersTestClass.class, "staticMethod");
         final Method<?, ?> finalMethod = reflectMethod(ModifiersTestClass.class, "finalMethod");
+        final Method<?, ?> nativeMethod = reflectMethod(ModifiersTestClass.class, "nativeMethod");
 
         final Set<Modifier> methodModifiers = method.getModifiers();
         final Set<Modifier> staticModifiers = staticMethod.getModifiers();
         final Set<Modifier> finalModifiers = finalMethod.getModifiers();
+        final Set<Modifier> nativeModifiers = nativeMethod.getModifiers();
 
         assertEquals(Set.of(Modifier.PUBLIC, Modifier.ABSTRACT), methodModifiers);
         assertEquals(Set.of(Modifier.PROTECTED, Modifier.STATIC, Modifier.SYNCHRONIZED, Modifier.STRICTFP), staticModifiers);
         assertEquals(Set.of(Modifier.PRIVATE, Modifier.FINAL), finalModifiers);
+        assertEquals(Set.of(Modifier.NATIVE), nativeModifiers);
     }
 
     @Test
