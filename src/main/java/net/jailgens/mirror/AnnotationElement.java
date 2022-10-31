@@ -33,7 +33,8 @@ public interface AnnotationElement {
      * @since 0.0.0
      */
     @SideEffectFree
-    static @NewObject @NonNull AnnotationElement of(final @NonNull String annotationType, final @NonNull String name) {
+    static @NewObject @NonNull AnnotationElement of(final @NonNull String annotationType,
+                                                    final @NonNull String name) {
 
         return new AnnotationElementImpl(annotationType, name);
     }
@@ -57,7 +58,8 @@ public interface AnnotationElement {
      */
     @SideEffectFree
     static @NewObject @NonNull AnnotationElement of(
-            final @NonNull Class<? extends @NonNull Annotation> annotationType, final @NonNull String name) {
+            final @NonNull Class<? extends @NonNull Annotation> annotationType,
+            final @NonNull String name) {
 
         Objects.requireNonNull(annotationType, "annotationType cannot be null");
         return of(annotationType.getTypeName(), name);
@@ -74,7 +76,8 @@ public interface AnnotationElement {
      */
     @SideEffectFree
     static @NewObject @NonNull AnnotationElement of(
-            final @NonNull ParameterizedType<? extends @NonNull Annotation> annotationType, final @NonNull String name) {
+            final @NonNull ParameterizedType<? extends @NonNull Annotation> annotationType,
+            final @NonNull String name) {
 
         Objects.requireNonNull(annotationType, "annotationType");
         return of(annotationType.getTypeName(), name);

@@ -27,7 +27,9 @@ class TypeDefinitionTest {
     void Given_TypeDefinition_When_GetAnnotations_Then_ReturnsAnnotations() {
 
         @TestAnnotation(10)
-        class TestClass {}
+        class TestClass {
+
+        }
         TypeDefinition<TestClass> typeDefinition = mirror.reflect(TestClass.class);
 
         final AnnotationValues annotations = typeDefinition.getAnnotations();
@@ -40,7 +42,9 @@ class TypeDefinitionTest {
     @Test
     void Given_ClassTypeDefinition_When_CheckIsClass_Then_ReturnsTrue() {
 
-        class TestClass {}
+        class TestClass {
+
+        }
         final TypeDefinition<TestClass> typeDefinition = mirror.reflect(TestClass.class);
 
         final boolean isClass = typeDefinition.isClass();
@@ -65,7 +69,9 @@ class TypeDefinitionTest {
     @Test
     void Given_TypeDefinition_When_GetName_Then_ReturnsName() {
 
-        class TestClass {}
+        class TestClass {
+
+        }
         final TypeDefinition<TestClass> typeDefinition = mirror.reflect(TestClass.class);
 
         final String name = typeDefinition.getName();
@@ -76,8 +82,12 @@ class TypeDefinitionTest {
     @Test
     void Given_TypeDefinition_When_GetModifiers_Then_ReturnsModifiers() {
 
-        abstract class AbstractTestClass {}
-        final class FinalTestClass {}
+        abstract class AbstractTestClass {
+
+        }
+        final class FinalTestClass {
+
+        }
         final TypeDefinition<AbstractTestClass> abstractTestClassTypeDefinition =
                 mirror.reflect(AbstractTestClass.class);
         final TypeDefinition<FinalTestClass> finalTestClassTypeDefinition =
@@ -94,7 +104,9 @@ class TypeDefinitionTest {
     @Test
     void Given_TypeDefinition_When_GetRawType_Then_ReturnsRawType() {
 
-        class TestClass {}
+        class TestClass {
+
+        }
         final TypeDefinition<TestClass> typeDefinition = mirror.reflect(TestClass.class);
 
         final Class<TestClass> rawType = typeDefinition.getRawType();
@@ -106,9 +118,16 @@ class TypeDefinitionTest {
     void Given_TypeDefinition_When_GetMembers_Then_ReturnsFieldsConstructorsAndMethods() {
 
         class TestClass {
+
             String field;
-            TestClass() {}
-            void method() {}
+
+            TestClass() {
+
+            }
+
+            void method() {
+
+            }
         }
         final TypeDefinition<TestClass> typeDefinition = mirror.reflect(TestClass.class);
 
@@ -128,5 +147,7 @@ class TypeDefinitionTest {
         int value();
     }
 
-    interface TestInterface {}
+    interface TestInterface {
+
+    }
 }

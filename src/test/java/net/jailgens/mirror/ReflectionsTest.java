@@ -12,7 +12,9 @@ class ReflectionsTest {
 
     @Documented
     @Retention(RetentionPolicy.RUNTIME)
-    @interface TestAnnotation {}
+    @interface TestAnnotation {
+
+    }
 
     @Test
     void When_CreateAnnotationValues_Then_ReturnsAllAnnotations() {

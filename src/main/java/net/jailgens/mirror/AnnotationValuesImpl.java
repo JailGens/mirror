@@ -62,7 +62,7 @@ final class AnnotationValuesImpl implements AnnotationValues {
         }
 
         AnnotationValuesImpl that = (AnnotationValuesImpl) o;
-        
+
         return annotations.equals(that.annotations) &&
                 values.equals(that.values);
     }
@@ -170,7 +170,7 @@ final class AnnotationValuesImpl implements AnnotationValues {
     }
 
     private <T> @NonNull T getObjectOrDefault(final @NonNull AnnotationElement annotationElement,
-                                               final @NonNull T defaultValue) {
+                                              final @NonNull T defaultValue) {
 
         T value = getObject(annotationElement);
 

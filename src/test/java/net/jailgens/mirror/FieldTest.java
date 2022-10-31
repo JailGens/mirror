@@ -38,6 +38,7 @@ class FieldTest {
     void Given_InstanceField_When_GetOnInstance_Then_ReturnValueOfField() {
 
         class TestClass {
+
             final String field = "value";
         }
         final Field<TestClass, String> field = reflectField(TestClass.class, "field");
@@ -51,6 +52,7 @@ class FieldTest {
     void Given_InstanceField_When_GetOnNull_Then_Throws() {
 
         class TestClass {
+
             final String field = "value";
         }
         final Field<TestClass, String> field = reflectField(TestClass.class, "field");
@@ -62,6 +64,7 @@ class FieldTest {
     void Given_StaticField_When_GetOnNull_Then_ReturnValueOfField() {
 
         class TestClass {
+
             static final String FIELD = "value";
         }
         final Field<TestClass, String> field = reflectField(TestClass.class, "FIELD");
@@ -75,6 +78,7 @@ class FieldTest {
     void Given_StaticField_When_GetOnInstance_Then_ReturnValueOfField() {
 
         class TestClass {
+
             private static final String FIELD = "value";
             // field is private to remove instantiation of utility class warning
         }
@@ -89,6 +93,7 @@ class FieldTest {
     void Given_FinalField_When_Set_Then_Throws() {
 
         class TestClass {
+
             static final String FIELD = "value";
         }
         final Field<TestClass, String> field = reflectField(TestClass.class, "FIELD");
@@ -102,6 +107,7 @@ class FieldTest {
     void Given_InstanceField_When_SetOnInstance_Then_SetsField() {
 
         class TestClass {
+
             String field = "value";
         }
         final Field<TestClass, String> field = reflectField(TestClass.class, "field");
@@ -116,6 +122,7 @@ class FieldTest {
     void Given_InstanceField_When_SetOnNull_Then_Throws() {
 
         class TestClass {
+
             String field = "value";
         }
         final Field<TestClass, String> field = reflectField(TestClass.class, "field");
@@ -124,6 +131,7 @@ class FieldTest {
     }
 
     static class StaticFieldTestClass {
+
         private static String field = "value";
         // field is private to remove instantiation of utility class warning
     }
@@ -154,6 +162,7 @@ class FieldTest {
     void Given_Field_When_GetName_Then_ReturnsName() {
 
         class TestClass {
+
             String fieldName;
         }
         final Field<?, ?> field = mirror.reflect(TestClass.class)
@@ -168,6 +177,7 @@ class FieldTest {
     }
 
     static class ModifiersTestClass {
+
         public static volatile String volatileField;
         private final String finalField = "value";
         protected transient String protectedField;
@@ -197,6 +207,7 @@ class FieldTest {
     void Given_Field_When_GetDeclarationType_Then_ReturnsDeclaringType() {
 
         class TestClass {
+
             String field;
         }
         final TypeDefinition<TestClass> typeDefinition = mirror.reflect(TestClass.class);
@@ -212,6 +223,7 @@ class FieldTest {
     void Given_Field_When_GetRawDeclaringType_Then_ReturnsRawDeclaringType() {
 
         class TestClass {
+
             String field;
         }
         final Field<TestClass, ?> field = reflectField(TestClass.class, "field");
@@ -225,6 +237,7 @@ class FieldTest {
     void Given_Field_When_GetType_Then_ReturnsType() {
 
         class TestClass {
+
             List<String> field;
         }
         final Field<TestClass, ?> field = reflectField(TestClass.class, "field");
@@ -242,6 +255,7 @@ class FieldTest {
     void Given_Field_When_GetRawType_Then_ReturnsRawType() {
 
         class TestClass {
+
             String field;
         }
         final Field<TestClass, ?> field = reflectField(TestClass.class, "field");

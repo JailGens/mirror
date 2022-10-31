@@ -15,7 +15,9 @@ import java.util.Objects;
  */
 final class Reflections {
 
-    private Reflections() {}
+    private Reflections() {
+
+    }
 
     @SideEffectFree
     static @NewObject @NonNull AnnotationValues createAnnotationValues(

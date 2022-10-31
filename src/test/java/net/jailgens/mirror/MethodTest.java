@@ -20,6 +20,7 @@ class MethodTest {
 
     @Retention(RetentionPolicy.RUNTIME)
     @interface TestAnnotation {
+
         String value();
     }
 
@@ -46,16 +47,19 @@ class MethodTest {
     void Given_Method_When_GetAnnotations_Then_ReturnsAnnotations() {
 
         class TestClass {
+
             @TestAnnotation("value")
-            void method() {}
+            void method() {
+
+            }
         }
         final Method<TestClass, ?> method = reflectMethod(TestClass.class, "method");
 
         final AnnotationValues annotations = method.getAnnotations();
 
         assertEquals(AnnotationValues.builder()
-                .value(AnnotationElement.value(TestAnnotation.class), "value")
-                .build(),
+                        .value(AnnotationElement.value(TestAnnotation.class), "value")
+                        .build(),
                 annotations);
     }
 
@@ -63,24 +67,27 @@ class MethodTest {
     void Given_Method_When_GetParameters_Then_ReturnsParameters() {
 
         class TestClass {
+
             void method(final @TestAnnotation("param1") String param1,
-                        @TestAnnotation("param2") Integer param2) {}
+                        @TestAnnotation("param2") Integer param2) {
+
+            }
         }
         final Method<TestClass, ?> method = reflectMethod(TestClass.class, "method");
 
         final List<Parameter<?>> parameters = method.getParameters();
 
         assertEquals(AnnotationValues.builder()
-                .value(AnnotationElement.value(TestAnnotation.class), "param1")
-                .build(),
+                        .value(AnnotationElement.value(TestAnnotation.class), "param1")
+                        .build(),
                 parameters.get(0).getAnnotations());
         assertEquals("param1", parameters.get(0).getName());
         assertEquals(Set.of(Modifier.FINAL), parameters.get(0).getModifiers());
         assertEquals(ParameterizedType.of(String.class), parameters.get(0).getType());
         assertEquals(String.class, parameters.get(0).getRawType());
         assertEquals(AnnotationValues.builder()
-                .value(AnnotationElement.value(TestAnnotation.class), "param2")
-                .build(),
+                        .value(AnnotationElement.value(TestAnnotation.class), "param2")
+                        .build(),
                 parameters.get(1).getAnnotations());
         assertEquals("param2", parameters.get(1).getName());
         assertEquals(Set.of(), parameters.get(1).getModifiers());
@@ -92,10 +99,15 @@ class MethodTest {
     void Given_Method_When_GetType_Then_ReturnsType() {
 
         class TestClass {
+
             String method1() {
+
                 return "";
             }
-            void method2() {}
+
+            void method2() {
+
+            }
         }
         final Method<TestClass, String> method1 = reflectMethod(TestClass.class, "method1");
         final Method<TestClass, Void> method2 = reflectMethod(TestClass.class, "method2");
@@ -111,10 +123,15 @@ class MethodTest {
     void Given_Method_When_GetRawType_Then_ReturnsRawType() {
 
         class TestClass {
+
             String method1() {
+
                 return "";
             }
-            void method2() {}
+
+            void method2() {
+
+            }
         }
         final Method<TestClass, String> method1 = reflectMethod(TestClass.class, "method1");
         final Method<TestClass, Void> method2 = reflectMethod(TestClass.class, "method2");
@@ -127,9 +144,16 @@ class MethodTest {
     }
 
     abstract static class ModifiersTestClass {
+
         public abstract void method();
-        protected static synchronized strictfp void staticMethod() {}
-        private final void finalMethod() {}
+
+        protected static synchronized strictfp void staticMethod() {
+
+        }
+
+        private final void finalMethod() {
+
+        }
     }
 
     @Test
@@ -152,7 +176,10 @@ class MethodTest {
     void Given_Constructor_When_GetDeclaringType_Then_ReturnsDeclaringType() {
 
         class TestClass {
-            void method() {}
+
+            void method() {
+
+            }
         }
         final TypeDefinition<TestClass> typeDefinition = mirror.reflect(TestClass.class);
         final Method<TestClass, ?> method = typeDefinition.getMethods()
@@ -168,7 +195,12 @@ class MethodTest {
     void Given_Method_When_GetRawDeclaringType_Then_ReturnsDeclaringType() {
 
         class TestClass {
-            void testMethod() {};
+
+            void testMethod() {
+
+            }
+
+            ;
         }
         final Method<TestClass, Void> method = reflectMethod(TestClass.class, "testMethod");
 
@@ -181,8 +213,11 @@ class MethodTest {
     void Given_InstanceMethod_When_InvokedOnInstance_Then_InvokesMethod() {
 
         class TestClass {
+
             String arg;
+
             String method(String arg) {
+
                 this.arg = arg;
                 return "return value";
             }
@@ -197,12 +232,16 @@ class MethodTest {
     }
 
     static class StaticMethodTestClass {
+
         static String arg;
+
         static String method(String arg) {
+
             StaticMethodTestClass.arg = arg;
             return "return value";
         }
     }
+
     @Test
     void Given_StaticMethod_When_InvokedOnNull_ThenInvokesMethods() {
 
@@ -231,7 +270,10 @@ class MethodTest {
     void Given_Method_When_CalledWithInvalidArgumentTypes_Then_Throws() {
 
         class TestClass {
-            void method(String s) {}
+
+            void method(String s) {
+
+            }
         }
         final Method<TestClass, Void> method = reflectMethod(TestClass.class, "method");
 
@@ -242,7 +284,10 @@ class MethodTest {
     void Given_Method_When_InvokedWithInvalidArgumentsLength_Then_Throws() {
 
         class TestClass {
-            void method(String arg) {}
+
+            void method(String arg) {
+
+            }
         }
         final Method<TestClass, String> method = reflectMethod(TestClass.class, "method");
 
@@ -255,7 +300,9 @@ class MethodTest {
 
         final RuntimeException e = new RuntimeException();
         class TestClass {
+
             void method() {
+
                 throw e;
             }
         }
@@ -269,7 +316,10 @@ class MethodTest {
     void Given_InstanceMethod_When_InvokedOnNull_Then_Throws() {
 
         class TestClass {
-            void method() {}
+
+            void method() {
+
+            }
         }
         final Method<TestClass, Void> method = reflectMethod(TestClass.class, "method");
 

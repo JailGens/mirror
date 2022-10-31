@@ -162,6 +162,7 @@ public enum Modifier {
      */
     @Override
     public @NonNull String toString() {
+
         return name().toLowerCase();
     }
 }

@@ -711,7 +711,8 @@ public interface AnnotationValues {
          * @throws NullPointerException if {@code element} is null or {@code value} contains or is {@code null}.
          * @since 0.0.0
          */
-        @SuppressWarnings("unchecked") // reason: we can have a precondition to check this
+        @SuppressWarnings("unchecked")
+        // reason: we can have a precondition to check this
         <T extends Enum<@NonNull T>> @NonNull @This Builder value(
                 @NonNull AnnotationElement element, @NonNull Enum<@NonNull T> @NonNull ... value);
 

@@ -98,7 +98,7 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
     @SuppressWarnings({"unchecked", "rawtypes"})
     @SideEffectFree
     static <K extends @NonNull Object, V extends @NonNull Object>
-            @NonNull ParameterizedType<@NonNull Map<@NonNull K, @NonNull V>> mapOf(
+    @NonNull ParameterizedType<@NonNull Map<@NonNull K, @NonNull V>> mapOf(
             final @NonNull Class<@NonNull K> k, final @NonNull Class<@NonNull V> v) {
 
         return of((Class) Map.class, k, v);
@@ -133,7 +133,7 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
     @SuppressWarnings({"unchecked", "rawtypes"})
     @SideEffectFree
     static <E extends @NonNull Object> @NonNull ParameterizedType<@NonNull Set<@NonNull E>> setOf(
-        final @NonNull Class<@NonNull E> e) {
+            final @NonNull Class<@NonNull E> e) {
 
         return of((Class) Set.class, e);
     }
@@ -150,7 +150,7 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
     @SuppressWarnings({"unchecked", "rawtypes"})
     @SideEffectFree
     static <E extends @NonNull Object> @NonNull ParameterizedType<@NonNull Collection<@NonNull E>> collectionOf(
-        final @NonNull Class<@NonNull E> e) {
+            final @NonNull Class<@NonNull E> e) {
 
         return of((Class) Collection.class, e);
     }

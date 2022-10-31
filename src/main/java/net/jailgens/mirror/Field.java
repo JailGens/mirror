@@ -26,7 +26,6 @@ public interface Field<R extends @NonNull Object, T extends @Nullable Object> ex
      */
     @NonNull T get(@Nullable R receiver);
 
-
     /**
      * Sets the value of this field.
      *

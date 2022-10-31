@@ -10,7 +10,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * @param <T> the type this constructor constructs.
  */
 public interface Constructor<T extends @NonNull Object> extends
-    Annotated, Invokable<@NonNull T, @NonNull T> {
+        Annotated, Invokable<@NonNull T, @NonNull T> {
 
     /**
      * Calls the constructor with the specified arguments.

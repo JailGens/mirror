@@ -53,6 +53,7 @@ class ConstructorTest {
 
     @Retention(RetentionPolicy.RUNTIME)
     @interface TestAnnotation {
+
         String value();
     }
 
@@ -60,9 +61,12 @@ class ConstructorTest {
     void Given_Constructor_When_GetAnnotations_Then_ReturnsAnnotations() {
 
         class TestClass {
+
             @TestAnnotation("value")
             @Deprecated()
-            TestClass() {}
+            TestClass() {
+
+            }
         }
         final Constructor<TestClass> constructor = reflectConstructor(TestClass.class);
 
@@ -76,14 +80,18 @@ class ConstructorTest {
     }
 
     static class StringValueClass {
+
         final String argument;
+
         StringValueClass(String argument) {
+
             this.argument = argument;
         }
     }
 
     @Test
     void Given_Constructor_When_Construct_Then_CallTargetConstructorWithArguments() {
+
         final Constructor<StringValueClass> constructor = reflectConstructor(StringValueClass.class);
 
         final StringValueClass stringValueClass = constructor.construct("some argument");
@@ -92,7 +100,10 @@ class ConstructorTest {
     }
 
     static class InvalidArgumentsTypesTestClass {
-        InvalidArgumentsTypesTestClass(String argument) {}
+
+        InvalidArgumentsTypesTestClass(String argument) {
+
+        }
     }
 
     @Test
@@ -104,13 +115,23 @@ class ConstructorTest {
     }
 
     static class ArgumentsLengthTestClass {
-        ArgumentsLengthTestClass() {}
-        ArgumentsLengthTestClass(String p1) {}
-        ArgumentsLengthTestClass(String p1, String p2) {}
+
+        ArgumentsLengthTestClass() {
+
+        }
+
+        ArgumentsLengthTestClass(String p1) {
+
+        }
+
+        ArgumentsLengthTestClass(String p1, String p2) {
+
+        }
     }
 
     @Test
     void Given_Constructor_When_ConstructWithInvalidArgumentsLength_Then_Throws() {
+
         final Constructor<ArgumentsLengthTestClass> constructor1 =
                 reflectConstructorByParameterLength(ArgumentsLengthTestClass.class, 0);
         final Constructor<ArgumentsLengthTestClass> constructor2 =
@@ -123,7 +144,9 @@ class ConstructorTest {
         assertThrows(IllegalArgumentException.class, () -> constructor3.construct("not enough arguments"));
     }
 
-    static abstract class TestAbstractClass {}
+    static abstract class TestAbstractClass {
+
+    }
 
     @Test
     void Given_AbstractClassConstructor_When_Construct_Then_Throws() {
@@ -134,8 +157,11 @@ class ConstructorTest {
     }
 
     static final RuntimeException e = new RuntimeException();
+
     static class ThrowingClass {
+
         ThrowingClass() {
+
             throw e;
         }
     }
@@ -151,11 +177,15 @@ class ConstructorTest {
     }
 
     static class ParametersTestClass {
-        ParametersTestClass(final String p1, @TestAnnotation("value") Integer p2) {}
+
+        ParametersTestClass(final String p1, @TestAnnotation("value") Integer p2) {
+
+        }
     }
 
     @Test
     void Given_Constructor_When_GetParameters_Then_ReturnsParameters() {
+
         final Constructor<ParametersTestClass> constructor =
                 reflectConstructor(ParametersTestClass.class);
 
@@ -180,7 +210,10 @@ class ConstructorTest {
     void Given_Constructor_When_GetType_Then_ReturnType() {
 
         class TestClass {
-            TestClass() {}
+
+            TestClass() {
+
+            }
         }
         final Constructor<TestClass> constructor = reflectConstructor(TestClass.class);
 
@@ -193,7 +226,10 @@ class ConstructorTest {
     void Given_Constructor_When_GetRawType_Then_ReturnRawType() {
 
         class TestClass {
-            TestClass() {}
+
+            TestClass() {
+
+            }
         }
         final Constructor<TestClass> constructor = reflectConstructor(TestClass.class);
 
@@ -206,7 +242,10 @@ class ConstructorTest {
     void Given_Constructor_When_GetName_Then_ReturnName() {
 
         class TestClass {
-            TestClass() {}
+
+            TestClass() {
+
+            }
         }
         final Constructor<TestClass> constructor = reflectConstructor(TestClass.class);
 
@@ -219,7 +258,10 @@ class ConstructorTest {
     void Given_Constructor_When_GetModifiers_Then_ReturnsModifiers() {
 
         class TestClass {
-            protected TestClass() {}
+
+            protected TestClass() {
+
+            }
         }
         final Constructor<TestClass> constructor = reflectConstructor(TestClass.class);
 
@@ -232,7 +274,10 @@ class ConstructorTest {
     void Given_Constructor_When_GetDeclaringType_Then_ReturnsDeclaringType() {
 
         class TestClass {
-            TestClass() {}
+
+            TestClass() {
+
+            }
         }
         final TypeDefinition<TestClass> typeDefinition = mirror.reflect(TestClass.class);
         final Constructor<TestClass> constructor = typeDefinition.getConstructors()
@@ -248,7 +293,10 @@ class ConstructorTest {
     void Given_Constructor_When_GetRawDeclaringType() {
 
         class TestClass {
-            TestClass() {}
+
+            TestClass() {
+
+            }
         }
         final Constructor<TestClass> constructor = reflectConstructor(TestClass.class);
 

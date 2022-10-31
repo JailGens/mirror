@@ -39,7 +39,7 @@ final class TypeDefinitionImpl<T extends @NonNull Object> implements TypeDefinit
         this.modifiers = Modifier.modifiersAsSet(cls.getModifiers());
 
         this.fields = Arrays.stream(cls.getDeclaredFields())
-                .<Field<T, ?>> map((field) -> new FieldImpl<>(TypeDefinitionImpl.this, field))
+                .<Field<T, ?>>map((field) -> new FieldImpl<>(TypeDefinitionImpl.this, field))
                 .collect(Collectors.toUnmodifiableList());
 
         // TODO(Sparky983): find out why it doesn't work without this cast which even IntelliJ says
