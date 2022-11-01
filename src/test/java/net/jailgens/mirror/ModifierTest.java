@@ -1,6 +1,8 @@
 package net.jailgens.mirror;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,5 +34,65 @@ class ModifierTest {
         assertEquals("strictfp", strictfpString);
         assertEquals("transient", transientString);
         assertEquals("volatile", volatileString);
+    }
+
+    @Test
+    void Given_Modifier_When_Is_Then_ReturnsTrueIfIsModifier() {
+
+        final int allModifiers = Integer.MAX_VALUE;
+
+        final boolean isPublic = Modifier.PUBLIC.in(allModifiers);
+        final boolean isPrivate = Modifier.PRIVATE.in(allModifiers);
+        final boolean isProtected = Modifier.PROTECTED.in(allModifiers);
+        final boolean isStatic = Modifier.STATIC.in(allModifiers);
+        final boolean isFinal = Modifier.FINAL.in(allModifiers);
+        final boolean isAbstract = Modifier.ABSTRACT.in(allModifiers);
+        final boolean isSynchronized = Modifier.SYNCHRONIZED.in(allModifiers);
+        final boolean isNative = Modifier.NATIVE.in(allModifiers);
+        final boolean isStrictfp = Modifier.STRICTFP.in(allModifiers);
+        final boolean isTransient = Modifier.TRANSIENT.in(allModifiers);
+        final boolean isVolatile = Modifier.VOLATILE.in(allModifiers);
+
+        assertTrue(isPublic);
+        assertTrue(isPrivate);
+        assertTrue(isProtected);
+        assertTrue(isStatic);
+        assertTrue(isFinal);
+        assertTrue(isAbstract);
+        assertTrue(isSynchronized);
+        assertTrue(isNative);
+        assertTrue(isStrictfp);
+        assertTrue(isTransient);
+        assertTrue(isVolatile);
+    }
+
+    @Test
+    void Given_Modifier_When_Is_Then_ReturnsFalseWhenIsNotModifier() {
+
+        final int allModifiers = Integer.MIN_VALUE;
+
+        final boolean isPublic = Modifier.PUBLIC.in(allModifiers);
+        final boolean isPrivate = Modifier.PRIVATE.in(allModifiers);
+        final boolean isProtected = Modifier.PROTECTED.in(allModifiers);
+        final boolean isStatic = Modifier.STATIC.in(allModifiers);
+        final boolean isFinal = Modifier.FINAL.in(allModifiers);
+        final boolean isAbstract = Modifier.ABSTRACT.in(allModifiers);
+        final boolean isSynchronized = Modifier.SYNCHRONIZED.in(allModifiers);
+        final boolean isNative = Modifier.NATIVE.in(allModifiers);
+        final boolean isStrictfp = Modifier.STRICTFP.in(allModifiers);
+        final boolean isTransient = Modifier.TRANSIENT.in(allModifiers);
+        final boolean isVolatile = Modifier.VOLATILE.in(allModifiers);
+
+        assertFalse(isPublic);
+        assertFalse(isPrivate);
+        assertFalse(isProtected);
+        assertFalse(isStatic);
+        assertFalse(isFinal);
+        assertFalse(isAbstract);
+        assertFalse(isSynchronized);
+        assertFalse(isNative);
+        assertFalse(isStrictfp);
+        assertFalse(isTransient);
+        assertFalse(isVolatile);
     }
 }

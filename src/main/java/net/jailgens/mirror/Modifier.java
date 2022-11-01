@@ -6,18 +6,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import static java.lang.reflect.Modifier.isAbstract;
-import static java.lang.reflect.Modifier.isFinal;
-import static java.lang.reflect.Modifier.isNative;
-import static java.lang.reflect.Modifier.isPrivate;
-import static java.lang.reflect.Modifier.isProtected;
-import static java.lang.reflect.Modifier.isPublic;
-import static java.lang.reflect.Modifier.isStatic;
-import static java.lang.reflect.Modifier.isStrict;
-import static java.lang.reflect.Modifier.isSynchronized;
-import static java.lang.reflect.Modifier.isTransient;
-import static java.lang.reflect.Modifier.isVolatile;
-
 /**
  * An enum of all modifiers.
  *
@@ -31,124 +19,98 @@ public enum Modifier {
      *
      * @since 0.0.0
      */
-    PUBLIC,
+    PUBLIC(java.lang.reflect.Modifier.PUBLIC),
 
     /**
      * The {@code private} modifier.
      *
      * @since 0.0.0
      */
-    PRIVATE,
+    PRIVATE(java.lang.reflect.Modifier.PRIVATE),
 
     /**
      * The {@code protected} modifier.
      *
      * @since 0.0.0
      */
-    PROTECTED,
+    PROTECTED(java.lang.reflect.Modifier.PROTECTED),
 
     /**
      * The {@code static} modifier.
      *
      * @since 0.0.0
      */
-    STATIC,
+    STATIC(java.lang.reflect.Modifier.STATIC),
 
     /**
      * The {@code final} modifier.
      *
      * @since 0.0.0
      */
-    FINAL,
+    FINAL(java.lang.reflect.Modifier.FINAL),
 
     /**
      * The {@code synchronized} modifier.
      *
      * @since 0.0.0
      */
-    SYNCHRONIZED,
+    SYNCHRONIZED(java.lang.reflect.Modifier.SYNCHRONIZED),
 
     /**
      * The {@code volatile} modifier.
      *
      * @since 0.0.0
      */
-    VOLATILE,
+    VOLATILE(java.lang.reflect.Modifier.VOLATILE),
 
     /**
      * The {@code transient} modifier.
      *
      * @since 0.0.0
      */
-    TRANSIENT,
+    TRANSIENT(java.lang.reflect.Modifier.TRANSIENT),
 
     /**
      * The {@code native} modifier.
      *
      * @since 0.0.0
      */
-    NATIVE,
+    NATIVE(java.lang.reflect.Modifier.NATIVE),
 
     /**
      * The {@code abstract} modifier.
      *
      * @since 0.0.0
      */
-    ABSTRACT,
+    ABSTRACT(java.lang.reflect.Modifier.ABSTRACT),
 
     /**
      * The {@code strictfp} modifier.
      *
      * @since 0.0.0
      */
-    STRICTFP;
+    STRICTFP(java.lang.reflect.Modifier.STRICT);
+
+    private final int modifier;
+
+    Modifier(int modifier) {
+
+        this.modifier = modifier;
+    }
+
+    private static final class Modifiers {
+
+        private static final Modifier[] VALUES = Modifier.values();
+    }
 
     static @NonNull Set<@NonNull Modifier> modifiersAsSet(final int modifiers) {
 
         final Set<Modifier> modifiersSet = new HashSet<>();
 
-        if (isPublic(modifiers)) {
-            modifiersSet.add(Modifier.PUBLIC);
-        }
-
-        if (isPrivate(modifiers)) {
-            modifiersSet.add(Modifier.PRIVATE);
-        }
-
-        if (isProtected(modifiers)) {
-            modifiersSet.add(Modifier.PROTECTED);
-        }
-
-        if (isStatic(modifiers)) {
-            modifiersSet.add(Modifier.STATIC);
-        }
-
-        if (isFinal(modifiers)) {
-            modifiersSet.add(Modifier.FINAL);
-        }
-
-        if (isSynchronized(modifiers)) {
-            modifiersSet.add(Modifier.SYNCHRONIZED);
-        }
-
-        if (isVolatile(modifiers)) {
-            modifiersSet.add(Modifier.VOLATILE);
-        }
-
-        if (isTransient(modifiers)) {
-            modifiersSet.add(Modifier.TRANSIENT);
-        }
-
-        if (isNative(modifiers)) {
-            modifiersSet.add(Modifier.NATIVE);
-        }
-
-        if (isAbstract(modifiers)) {
-            modifiersSet.add(Modifier.ABSTRACT);
-        }
-
-        if (isStrict(modifiers)) {
-            modifiersSet.add(Modifier.STRICTFP);
+        for (final Modifier modifier : Modifiers.VALUES) {
+            if (modifier.in(modifiers)) {
+                modifiersSet.add(modifier);
+            }
         }
 
         return Collections.unmodifiableSet(modifiersSet);
@@ -165,4 +127,16 @@ public enum Modifier {
 
         return name().toLowerCase();
     }
+
+    /**
+     * Checks if the given modifiers contain this modifier.
+     *
+     * @param modifiers the modifiers.
+     * @return whether the given modifiers contain this modifier.
+     * @since 0.0.0
+     */
+     public boolean in(final int modifiers) {
+
+        return (modifier & modifiers) != 0;
+     }
 }
