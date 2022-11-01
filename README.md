@@ -16,13 +16,13 @@
 ## Table of Contents
 
 1. [Installation](#-installation)
-   1. [Gradle (Kotlin DSL)](#gradle-kotlin-dsl)
-   2. [Gradle (Groovy DSL)](#gradle-groovy-dsl)
-   3. [Maven](#maven)
+    1. [Gradle (Kotlin DSL)](#gradle-kotlin-dsl)
+    2. [Gradle (Groovy DSL)](#gradle-groovy-dsl)
+    3. [Maven](#maven)
 2. [Contributing](#-contributing)
 3. [License](#-license)
 
-## 📦 Installation 
+## 📦 Installation
 
 Replace `{release}` with the latest release version.
 

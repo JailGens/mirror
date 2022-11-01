@@ -135,8 +135,8 @@ public enum Modifier {
      * @return whether the given modifiers contain this modifier.
      * @since 0.0.0
      */
-     public boolean in(final int modifiers) {
+    public boolean in(final int modifiers) {
 
         return (modifier & modifiers) != 0;
-     }
+    }
 }
