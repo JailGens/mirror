@@ -11,8 +11,8 @@ final class MirrorImpl implements Mirror {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T extends @NonNull Object> @NonNull TypeDefinition<T> reflect(
-            final @NonNull Class<T> cls) {
+    public <T extends @NonNull Object> @NonNull TypeDefinition<@NonNull T> reflect(
+            final @NonNull Class<@NonNull T> cls) {
 
         final TypeDefinition<?> cachedTypeDefinition = typeDefinitionCache.get(cls);
 

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * @param <R> the receiver type. for static methods, this is the declaring class.
  * @param <T> the method's return type.
  */
-final class MethodImpl<T extends @NonNull Object, R extends @Nullable Object> implements Method<T, R> {
+final class MethodImpl<T extends @NonNull Object, R extends @Nullable Object> implements Method<@NonNull T, @NonNull R> {
 
     private final @NonNull TypeDefinition<@NonNull T> declaringType;
     private final java.lang.reflect.@NonNull Method method;
@@ -28,7 +28,7 @@ final class MethodImpl<T extends @NonNull Object, R extends @Nullable Object> im
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     @Pure
-    MethodImpl(final @NonNull TypeDefinition<T> declaringType,
+    MethodImpl(final @NonNull TypeDefinition<@NonNull T> declaringType,
                final java.lang.reflect.@NonNull Method method) {
 
         Objects.requireNonNull(declaringType, "declaringType cannot be null");

@@ -16,16 +16,16 @@ import static java.lang.reflect.Modifier.isStatic;
  * @param <R> the type that declares the field.
  * @param <T> the type of the field.
  */
-final class FieldImpl<R extends @NonNull Object, T extends @Nullable Object> implements Field<R, T> {
+final class FieldImpl<R extends @NonNull Object, T extends @Nullable Object> implements Field<@NonNull R, @NonNull T> {
 
     private final @NonNull TypeDefinition<@NonNull R> declaringType;
     private final java.lang.reflect.@NonNull Field field;
     private final @NonNull Set<@NonNull Modifier> modifiers;
-    private final @NonNull ParameterizedType<T> type;
+    private final @NonNull ParameterizedType<@NonNull T> type;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     @Pure
-    FieldImpl(final @NonNull TypeDefinition<R> declaringType,
+    FieldImpl(final @NonNull TypeDefinition<@NonNull R> declaringType,
               final java.lang.reflect.@NonNull Field field) {
 
         Objects.requireNonNull(field, "field cannot be null");
@@ -103,7 +103,7 @@ final class FieldImpl<R extends @NonNull Object, T extends @Nullable Object> imp
     }
 
     @Override
-    public @NonNull Class<T> getRawType() {
+    public @NonNull Class<@NonNull T> getRawType() {
 
         return type.getRawType();
     }

@@ -15,7 +15,7 @@ import java.util.List;
  * @see java.lang.reflect.Executable
  * @since 0.0.0
  */
-public interface Invokable<R extends @NonNull Object, T extends @Nullable Object> extends Annotated, Member<R>, Typed<T> {
+public interface Invokable<R extends @NonNull Object, T extends @Nullable Object> extends Annotated, Member<@NonNull R>, Typed<@NonNull T> {
 
     /**
      * Gets the parameters of this invokable.

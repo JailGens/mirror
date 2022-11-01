@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * @author Sparky983
  * @param <T> the type this constructor constructs.
  */
-final class ConstructorImpl<T extends @NonNull Object> implements Constructor<T> {
+final class ConstructorImpl<T extends @NonNull Object> implements Constructor<@NonNull T> {
 
     private final @NonNull TypeDefinition<@NonNull T> declaringType;
     private final java.lang.reflect.@NonNull Constructor<@NonNull T> constructor;
