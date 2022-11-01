@@ -1,15 +1,15 @@
 package net.jailgens.mirror;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParameterizedTypeTest {
 
@@ -38,7 +38,7 @@ class ParameterizedTypeTest {
     void When_MapOfStringToString_Then_ReturnsParameterizedTypeOfStringToString() {
 
         final ParameterizedType<Map<String, Object>> map =
-                ParameterizedType.mapOf(String.class ,Object.class);
+                ParameterizedType.mapOf(String.class, Object.class);
 
         assertEquals(Map.class, map.getRawType());
         assertEquals(ParameterizedType.of(String.class), map.getTypeArguments().get(0));

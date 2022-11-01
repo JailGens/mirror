@@ -19,7 +19,7 @@ implement the add
 
 ## Commit Guidelines
 
-Commits don't have to follow these guidelines, but PR titles must be, so we know what you've 
+Commits don't have to follow these guidelines, but PR titles must be, so we know what you've
 changed.
 
 [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
@@ -39,8 +39,8 @@ please comment on the existing pull request beforehand.
 
 ### Testing
 
-Please ensure that all tests pass before opening a pull request. If you have added new 
-functionality, please add tests for it. If you have fixed a bug, please add a test that would have 
+Please ensure that all tests pass before opening a pull request. If you have added new
+functionality, please add tests for it. If you have fixed a bug, please add a test that would have
 caught the bug.
 
 ## Style
