@@ -133,7 +133,7 @@ public enum Modifier {
      *
      * @param modifiers the modifiers.
      * @return whether the given modifiers contain this modifier.
-     * @see 0.0.0
+     * @since 0.0.0
      */
      public boolean in(final int modifiers) {
 
