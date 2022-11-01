@@ -1,6 +1,6 @@
-<h1 style="text-align: center;">Mirror</h1>
+<h1 align="center">Mirror</h1>
 
-<p style="text-align: center;">
+<p align="center">
     <img src="https://img.shields.io/github/v/release/jailgens/mirror?display_name=release&label=Release&style=flat-square&color=12bed3&labelColor=06222b" alt="Version">
     <a href="https://app.codecov.io/gh/jailgens/mirror">
         <img src="https://img.shields.io/codecov/c/github/jailgens/mirror?label=Coverage&style=flat-square&color=12bed3&labelColor=06222b" alt="Coverage">
@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/github/license/jailgens/mirror?label=License&style=flat-square&color=12bed3&labelColor=06222b" alt="License Apache">
 </p>
 
-<p style="text-align: center;">
+<p align="center">
     Java reflection wrapper that provides a much cleaner, and easy-to-use API.
 </p>
 
