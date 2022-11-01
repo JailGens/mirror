@@ -737,8 +737,9 @@ public interface AnnotationValues {
          * @throws NullPointerException if {@code element} is null or {@code value} contains or is {@code null}.
          * @since 0.0.0
          */
+        @SuppressWarnings("unchecked")
         @NonNull @This Builder value(@NonNull AnnotationElement element,
-                                     @NonNull Class<?> @NonNull ... value);
+                                     @NonNull Class<? extends @NonNull Object> @NonNull ... value);
 
         /**
          * Builds the annotation values.

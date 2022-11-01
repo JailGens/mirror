@@ -35,8 +35,8 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
      */
     @SideEffectFree
     @SafeVarargs
-    static <T extends @Nullable Object> @NonNull ParameterizedType<T> of(
-            final @NonNull Class<T> rawType,
+    static <T extends @Nullable Object> @NonNull ParameterizedType<@NonNull T> of(
+            final @NonNull Class<@NonNull T> rawType,
             final @NonNull ParameterizedType<? extends @Nullable Object> @NonNull ... typeArguments) {
 
         return new ParameterizedTypeImpl<>(AnnotationValues.empty(), rawType, typeArguments);
@@ -55,12 +55,11 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
      */
     @SideEffectFree
     @SafeVarargs
-    static <T extends @NonNull Object> @NonNull ParameterizedType<T> of(
+    static <T extends @NonNull Object> @NonNull ParameterizedType<@NonNull T> of(
             final @NonNull Class<@NonNull T> rawType,
             final @NonNull Class<? extends @NonNull Object> @NonNull ... typeArguments) {
 
         Objects.requireNonNull(typeArguments, "typeArguments cannot be null");
-
         return of(rawType,
                 Arrays.stream(typeArguments)
                         .<ParameterizedType<?>>map(ParameterizedType::of)
@@ -77,9 +76,8 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
      * @since 0.0.0
      */
     @SideEffectFree
-    static <T extends @NonNull Object> @NonNull ParameterizedType<T> of(final @NonNull Class<@NonNull T> rawType) {
-
-        Objects.requireNonNull(rawType, "rawType cannot be null");
+    static <T extends @NonNull Object> @NonNull ParameterizedType<@NonNull T> of(
+            final @NonNull Class<@NonNull T> rawType) {
 
         return new ParameterizedTypeImpl<>(AnnotationValues.empty(), rawType);
     }
@@ -92,7 +90,7 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
      * @param <K> the key type.
      * @param <V> the value type.
      * @return the newly created parameterized type.
-     * @throws NullPointerException if {@code key} or {@code value} are {@code null}.
+     * @throws NullPointerException if {@code k} or {@code v} are {@code null}.
      * @since 0.0.0
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
@@ -162,7 +160,7 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
      * @since 0.0.0
      */
     @Pure
-    @NonNull Class<T> getRawType();
+    @NonNull Class<@NonNull T> getRawType();
 
     /**
      * Gets the type arguments of this.

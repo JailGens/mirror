@@ -13,7 +13,7 @@ import java.util.Set;
  * @author Sparky983
  * @param <T>
  */
-final class ParameterImpl<T extends @Nullable Object> implements Parameter<T> {
+final class ParameterImpl<T extends @Nullable Object> implements Parameter<@NonNull T> {
 
     private final java.lang.reflect.@NonNull Parameter parameter;
     private final @NonNull AnnotationValues annotations;

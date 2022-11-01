@@ -32,7 +32,8 @@ public interface Mirror {
      * @return the type definition.
      * @since 0.0.0
      */
-    <T extends @NonNull Object> @NonNull TypeDefinition<T> reflect(@NonNull Class<T> cls);
+    <T extends @NonNull Object> @NonNull TypeDefinition<@NonNull T> reflect(
+            @NonNull Class<@NonNull T> cls);
 
     /**
      * A {@link Mirror} builder.

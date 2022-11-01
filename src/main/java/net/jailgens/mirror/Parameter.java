@@ -1,6 +1,7 @@
 package net.jailgens.mirror;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.dataflow.qual.Pure;
 
 import java.util.Set;
@@ -12,7 +13,7 @@ import java.util.Set;
  * @param <T> the type of the parameter.
  * @since 0.0.0
  */
-public interface Parameter<T> extends Annotated, Typed<T> {
+public interface Parameter<T extends @Nullable Object> extends Annotated, Typed<@NonNull T> {
 
     /**
      * Gets this member's name.

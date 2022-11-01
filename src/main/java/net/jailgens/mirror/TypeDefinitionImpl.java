@@ -17,7 +17,7 @@ import java.util.stream.Stream;
  * @author Sparky983
  * @param <T> The type.
  */
-final class TypeDefinitionImpl<T extends @NonNull Object> implements TypeDefinition<T> {
+final class TypeDefinitionImpl<T extends @NonNull Object> implements TypeDefinition<@NonNull T> {
 
     private final @NonNull Class<@NonNull T> rawType;
     private final @NonNull AnnotationValues annotations;
@@ -30,7 +30,7 @@ final class TypeDefinitionImpl<T extends @NonNull Object> implements TypeDefinit
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     @Pure
-    TypeDefinitionImpl(final @NonNull Class<T> cls) {
+    TypeDefinitionImpl(final @NonNull Class<@NonNull T> cls) {
 
         Objects.requireNonNull(cls, "cls cannot be null");
 
@@ -45,7 +45,7 @@ final class TypeDefinitionImpl<T extends @NonNull Object> implements TypeDefinit
         // TODO(Sparky983): find out why it doesn't work without this cast which even IntelliJ says
         //  is redundant
         this.constructors = (Collection<Constructor<T>>) Arrays.stream(cls.getDeclaredConstructors())
-                .<@NonNull Constructor<T>>map((constructor) -> new ConstructorImpl<>(this, (java.lang.reflect.Constructor) constructor))
+                .<@NonNull Constructor<@NonNull T>>map((constructor) -> new ConstructorImpl<>(this, (java.lang.reflect.Constructor) constructor))
                 .collect(Collectors.toUnmodifiableList());
 
         this.methods = (Collection<Method<T, ?>>) Arrays.stream(cls.getDeclaredMethods())
@@ -88,7 +88,7 @@ final class TypeDefinitionImpl<T extends @NonNull Object> implements TypeDefinit
     }
 
     @Override
-    public @NonNull Class<T> getRawType() {
+    public @NonNull Class<@NonNull T> getRawType() {
 
         return rawType;
     }

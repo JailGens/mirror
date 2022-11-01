@@ -11,7 +11,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * @param <T> the type of the field.
  * @since 0.0.0
  */
-public interface Field<R extends @NonNull Object, T extends @Nullable Object> extends Member<@NonNull R>, Typed<T> {
+public interface Field<R extends @NonNull Object, T extends @Nullable Object> extends Member<@NonNull R>, Typed<@NonNull T> {
 
     /**
      * Gets the value of this field.

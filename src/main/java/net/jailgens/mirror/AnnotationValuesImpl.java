@@ -163,15 +163,19 @@ final class AnnotationValuesImpl implements AnnotationValues {
     }
 
     @SuppressWarnings("unchecked")
-    private <T> @Nullable T getObject(final @NonNull AnnotationElement annotationElement) {
+    private <T extends @NonNull Object> @Nullable T getObject(
+            final @NonNull AnnotationElement annotationElement) {
 
         Objects.requireNonNull(annotationElement, "annotationElement cannot be null");
         return (T) values.get(annotationElement);
     }
 
-    private <T> @NonNull T getObjectOrDefault(final @NonNull AnnotationElement annotationElement,
-                                              final @NonNull T defaultValue) {
+    private <T extends @NonNull Object> @NonNull T getObjectOrDefault(
+            final @NonNull AnnotationElement annotationElement,
+            final @NonNull T defaultValue) {
 
+        // JSpecify states that the return should be a union of (@Nullable (@NonNull T))
+        // noinspection ConstantConditions
         final T value = getObject(annotationElement);
 
         if (value == null) {
@@ -269,7 +273,7 @@ final class AnnotationValuesImpl implements AnnotationValues {
     }
 
     @Override
-    public @NonNull <T> Optional<@NonNull Class<? extends @NonNull T>> getClass(
+    public @NonNull <T extends @NonNull Object> Optional<@NonNull Class<? extends @NonNull T>> getClass(
             final @NonNull AnnotationElement annotationElement) {
 
         return Optional.ofNullable(getObject(annotationElement));
@@ -451,7 +455,7 @@ final class AnnotationValuesImpl implements AnnotationValues {
 
         @Override
         public @NonNull @This Builder value(final @NonNull AnnotationElement element,
-                                            final @NonNull Enum<?> value) {
+                                            final @NonNull Enum<? extends @NonNull Object> value) {
 
             return boxValue(element, value);
         }
@@ -465,7 +469,7 @@ final class AnnotationValuesImpl implements AnnotationValues {
 
         @Override
         public @NonNull @This Builder value(final @NonNull AnnotationElement element,
-                                            final @NonNull Class<?> value) {
+                                            final @NonNull Class<? extends @NonNull Object> value) {
 
             return boxValue(element, value);
         }
