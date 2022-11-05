@@ -7,6 +7,14 @@ import java.util.WeakHashMap;
 
 final class MirrorImpl implements Mirror {
 
+    /**
+     * A private inner class allowing for lazy singleton initialization.
+     */
+    private static class Instance {
+
+        private static final Mirror INSTANCE = new MirrorImpl();
+    }
+
     private final Map<Class<?>, TypeDefinition<?>> typeDefinitionCache = new WeakHashMap<>();
 
     @SuppressWarnings("unchecked")
@@ -30,7 +38,7 @@ final class MirrorImpl implements Mirror {
         @Override
         public @NonNull Mirror build() {
 
-            return new MirrorImpl();
+            return Instance.INSTANCE;
         }
     }
 }
