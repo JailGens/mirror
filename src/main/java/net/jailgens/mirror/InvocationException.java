@@ -44,9 +44,7 @@ public class InvocationException extends RuntimeException {
     @Pure
     public InvocationException(final @NonNull Throwable targetException) {
 
-        super(targetException);
-        Objects.requireNonNull(targetException, "targetException cannot be null");
-        this.targetException = targetException;
+        this(null, targetException);
     }
 
     /**
