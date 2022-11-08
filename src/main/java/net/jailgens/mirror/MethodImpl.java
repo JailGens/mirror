@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 /**
  * The default {@link Method} implementation.
  *
+ * @author Sparky983
  * @param <R> the receiver type. for static methods, this is the declaring class.
  * @param <T> the method's return type.
  */

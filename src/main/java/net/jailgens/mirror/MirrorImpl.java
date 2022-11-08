@@ -5,6 +5,11 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+/**
+ * The {@link Mirror} implementation.
+ *
+ * @author Sparky983
+ */
 final class MirrorImpl implements Mirror {
 
     /**
