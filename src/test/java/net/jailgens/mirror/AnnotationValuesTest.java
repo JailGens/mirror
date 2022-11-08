@@ -97,7 +97,7 @@ class AnnotationValuesTest {
                 .build();
 
         final boolean hasTarget = values.hasAnnotation(Target.class);
-        final boolean hasParameterizedTarget = values.hasAnnotation(ParameterizedType.of(Target.class, Object.class));
+        final boolean hasParameterizedTarget = values.hasAnnotation(ParameterizedType.of(Target.class, ParameterizedType.of(Object.class)));
         final boolean hasRetention = values.hasAnnotation(Retention.class);
         final boolean hasParameterizedRetention = values.hasAnnotation(ParameterizedType.of(Retention.class, Object.class));
 

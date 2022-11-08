@@ -23,6 +23,28 @@ import java.util.Set;
 public interface ParameterizedType<T extends @Nullable Object> extends Annotated, Type {
 
     /**
+     * Creates a new parameterized type with the specified annotations, raw type and type arguments.
+     *
+     * @param annotations the annotations.
+     * @param rawType the raw type.
+     * @param typeArguments the type arguments.
+     * @param <T> the type.
+     * @return a new parameterized type with the specified annotations, raw type and type arguments.
+     * @throws NullPointerException if {@code annotations}, {@code rawType} or {@code typeArguments}
+     * are {@code null}.
+     * @since 0.0.0
+     */
+    @SafeVarargs
+    @Pure
+    static <T extends @Nullable Object> ParameterizedType<@NonNull T> of(
+            final @NonNull AnnotationValues annotations,
+            final @NonNull Class<@NonNull T> rawType,
+            final @NonNull ParameterizedType<? extends @NonNull Object> @NonNull ... typeArguments) {
+
+        return new ParameterizedTypeImpl<>(annotations, rawType, typeArguments);
+    }
+
+    /**
      * Creates a parameterized type with the specified raw type with the specified type arguments.
      *
      * @param rawType the raw type.
@@ -39,7 +61,35 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
             final @NonNull Class<@NonNull T> rawType,
             final @NonNull ParameterizedType<? extends @Nullable Object> @NonNull ... typeArguments) {
 
-        return new ParameterizedTypeImpl<>(AnnotationValues.empty(), rawType, typeArguments);
+        return of(AnnotationValues.empty(), rawType, typeArguments);
+    }
+
+    /**
+     * Creates a new parameterized type with the specified annotations, raw type and type arguments.
+     *
+     * @param annotations the annotations.
+     * @param rawType the raw type.
+     * @param typeArguments the type arguments.
+     * @param <T> the type.
+     * @return a new parameterized type with the specified annotations, raw type and type arguments.
+     * @throws NullPointerException if {@code annotations}, {@code rawType} or {@code typeArguments}
+     * are {@code null}.
+     * @since 0.0.0
+     */
+    @SafeVarargs
+    @Pure
+    static <T extends @Nullable Object> ParameterizedType<@NonNull T> of(
+            final @NonNull AnnotationValues annotations,
+            final @NonNull Class<@NonNull T> rawType,
+            final @NonNull Class<? extends @NonNull Object> @NonNull ... typeArguments) {
+
+        Objects.requireNonNull(typeArguments, "typeArguments cannot be null");
+
+        return of(annotations,
+                rawType,
+                Arrays.stream(typeArguments)
+                        .<ParameterizedType<?>>map(ParameterizedType::of)
+                        .toArray(ParameterizedType[]::new));
     }
 
     /**
@@ -59,11 +109,25 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
             final @NonNull Class<@NonNull T> rawType,
             final @NonNull Class<? extends @NonNull Object> @NonNull ... typeArguments) {
 
-        Objects.requireNonNull(typeArguments, "typeArguments cannot be null");
-        return of(rawType,
-                Arrays.stream(typeArguments)
-                        .<ParameterizedType<?>>map(ParameterizedType::of)
-                        .toArray(ParameterizedType[]::new));
+        return of(AnnotationValues.empty(), rawType, typeArguments);
+    }
+
+    /**
+     * Creates a new parameterized type with the specified annotations and raw type.
+     *
+     * @param annotations the annotations.
+     * @param rawType the raw type.
+     * @param <T> the type.
+     * @return a new parameterized type with the specified annotations and raw type.
+     * @throws NullPointerException if {@code annotations} or {@code rawType} are {@code null}.
+     * @since 0.0.0
+     */
+    @Pure
+    static <T extends @Nullable Object> ParameterizedType<@NonNull T> of(
+            final @NonNull AnnotationValues annotations,
+            final @NonNull Class<@NonNull T> rawType) {
+
+        return new ParameterizedTypeImpl<>(annotations, rawType);
     }
 
     /**
@@ -79,7 +143,7 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
     static <T extends @NonNull Object> @NonNull ParameterizedType<@NonNull T> of(
             final @NonNull Class<@NonNull T> rawType) {
 
-        return new ParameterizedTypeImpl<>(AnnotationValues.empty(), rawType);
+        return of(AnnotationValues.empty(), rawType);
     }
 
     /**
