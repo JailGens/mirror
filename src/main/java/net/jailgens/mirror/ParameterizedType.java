@@ -32,7 +32,7 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
      * @return a new parameterized type with the specified annotations, raw type and type arguments.
      * @throws NullPointerException if {@code annotations}, {@code rawType} or {@code typeArguments}
      * are {@code null}.
-     * @since 0.0.0
+     * @since 0.1.0
      */
     @SafeVarargs
     @Pure
@@ -74,7 +74,7 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
      * @return a new parameterized type with the specified annotations, raw type and type arguments.
      * @throws NullPointerException if {@code annotations}, {@code rawType} or {@code typeArguments}
      * are {@code null}.
-     * @since 0.0.0
+     * @since 0.1.0
      */
     @SafeVarargs
     @Pure
@@ -120,7 +120,7 @@ public interface ParameterizedType<T extends @Nullable Object> extends Annotated
      * @param <T> the type.
      * @return a new parameterized type with the specified annotations and raw type.
      * @throws NullPointerException if {@code annotations} or {@code rawType} are {@code null}.
-     * @since 0.0.0
+     * @since 0.1.0
      */
     @Pure
     static <T extends @Nullable Object> ParameterizedType<@NonNull T> of(
