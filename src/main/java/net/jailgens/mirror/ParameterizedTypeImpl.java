@@ -40,6 +40,9 @@ final class ParameterizedTypeImpl<T extends @Nullable Object> implements Paramet
         this.typeArguments = List.of(typeArguments);
     }
 
+    /**
+     * An alternative constructor that avoids array allocation.
+     */
     @Pure
     ParameterizedTypeImpl(final @NonNull AnnotationValues annotations,
                           final @NonNull Class<@NonNull T> rawType) {
