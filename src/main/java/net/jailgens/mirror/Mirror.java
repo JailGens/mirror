@@ -30,6 +30,7 @@ public interface Mirror {
      * @param cls the type definition.
      * @param <T> the type of the type definition.
      * @return the type definition.
+     * @throws NullPointerException if {@code cls} is {@code null}.
      * @since 0.0.0
      */
     <T extends @NonNull Object> @NonNull TypeDefinition<@NonNull T> reflect(
