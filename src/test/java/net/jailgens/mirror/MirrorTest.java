@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.mock;
 
@@ -45,5 +46,12 @@ class MirrorTest {
                         .filter((method) -> method.getName().equals("getAnnotationType"))
                         .findFirst()
                         .orElseThrow(AssertionError::new));
+    }
+
+    @Test
+    void Given_NonInterfaceClass_When_CreateProxy_Then_ThrowsException() {
+
+        assertThrows(IllegalArgumentException.class,
+                () -> mirror.createProxy(Exception.class, Mockito.mock(InvocationHandler.class)));
     }
 }
