@@ -1,7 +1,7 @@
 <h1 align="center">Mirror</h1>
 
 <p align="center">
-    <img src="https://img.shields.io/github/v/release/jailgens/mirror?display_name=release&label=Release&style=flat-square&color=12bed3&labelColor=06222b" alt="Version">
+    <img src="https://img.shields.io/github/v/tag/jailgens/mirror?display_name=release&label=Release&style=flat-square&color=12bed3&labelColor=06222b" alt="Version">
     <a href="https://app.codecov.io/gh/jailgens/mirror">
         <img src="https://img.shields.io/codecov/c/github/jailgens/mirror?label=Coverage&style=flat-square&color=12bed3&labelColor=06222b" alt="Coverage">
     </a>
@@ -26,7 +26,7 @@
 
 Replace `{release}` with the latest release version.
 
-<img src="https://img.shields.io/github/v/release/jailgens/mirror?display_name=release&label=Release&style=flat-square&color=12bed3&labelColor=06222b" alt="Version">
+<img src="https://img.shields.io/github/v/tag/jailgens/mirror?display_name=release&label=Release&style=flat-square&color=12bed3&labelColor=06222b" alt="Version">
 
 ### Gradle (Kotlin DSL)
 
