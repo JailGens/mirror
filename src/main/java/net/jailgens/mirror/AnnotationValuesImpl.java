@@ -162,6 +162,13 @@ final class AnnotationValuesImpl implements AnnotationValues {
         return annotations;
     }
 
+    @Override
+    public @NonNull Optional<@NonNull Object> getBoxed(
+            final @NonNull AnnotationElement annotationElement) {
+
+        return Optional.ofNullable(getObject(annotationElement));
+    }
+
     @SuppressWarnings("unchecked")
     private <T extends @NonNull Object> @Nullable T getObject(
             final @NonNull AnnotationElement annotationElement) {
@@ -568,6 +575,67 @@ final class AnnotationValuesImpl implements AnnotationValues {
                                             final @NonNull Class<?> @NonNull ... value) {
 
             return boxValue(element, List.of(value));
+        }
+
+        @Override
+        public @NonNull @This Builder boxedValue(final @NonNull AnnotationElement element,
+                                                 final @NonNull Object value) {
+
+            Objects.requireNonNull(element, "element cannot be null");
+            Objects.requireNonNull(value, "value cannot be null");
+
+            if (value instanceof Integer) {
+                return value(element, (int) value);
+            } else if (value instanceof Byte) {
+                return value(element, (byte) value);
+            } else if (value instanceof Short) {
+                return value(element, (short) value);
+            } else if (value instanceof Long) {
+                return value(element, (long) value);
+            } else if (value instanceof Float) {
+                return value(element, (float) value);
+            } else if (value instanceof Double) {
+                return value(element, (double) value);
+            } else if (value instanceof Boolean) {
+                return value(element, (boolean) value);
+            } else if (value instanceof Character) {
+                return value(element, (char) value);
+            } else if (value instanceof String) {
+                return value(element, (String) value);
+            } else if (value instanceof Enum) {
+                return value(element, (Enum<?>) value);
+            } else if (value instanceof AnnotationValues) {
+                return value(element, (AnnotationValues) value);
+            } else if (value instanceof Class) {
+                return value(element, (Class<?>) value);
+            } else if (value instanceof int[]) {
+                return value(element, (int[]) value);
+            } else if (value instanceof byte[]) {
+                return value(element, (byte[]) value);
+            } else if (value instanceof short[]) {
+                return value(element, (short[]) value);
+            } else if (value instanceof long[]) {
+                return value(element, (long[]) value);
+            } else if (value instanceof float[]) {
+                return value(element, (float[]) value);
+            } else if (value instanceof double[]) {
+                return value(element, (double[]) value);
+            } else if (value instanceof boolean[]) {
+                return value(element, (boolean[]) value);
+            } else if (value instanceof char[]) {
+                return value(element, (char[]) value);
+            } else if (value instanceof String[]) {
+                return value(element, (String[]) value);
+            } else if (value instanceof Enum[]) {
+                // noinspection rawtypes,unchecked
+                return value(element, (Enum[]) value);
+            } else if (value instanceof AnnotationValues[]) {
+                return value(element, (AnnotationValues[]) value);
+            } else if (value instanceof Class[]) {
+                return value(element, (Class<?>[]) value);
+            }
+
+            throw new ClassCastException("Cannot cast " + value.getClass().getName() + " to a boxed value");
         }
 
         @Override
