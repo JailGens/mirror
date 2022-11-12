@@ -30,7 +30,12 @@ changed.
 
 ### Commit types
 
-We follow the angular convention for commit types.
+fix: a non-breaking bug fix (e.g. changing a parameter name, or changing an error message) | patch
+feat: a non-breaking addition to the api (e.g. a new class, or method) | minor
+refactor: other code changes that affect the user (e.g. renaming a variable, or method, updating javadoc, changing implementation) | minor
+test: adding or updating tests | none
+docs: a non-breaking change to the documentation (e.g. adding a comment, or updating the README) | none
+chore: repetitive tasks (e.g. updating the gradle wrapper, or updating the version number) | none
 
 ## Pull Request Guidelines
 
