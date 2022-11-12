@@ -34,11 +34,17 @@ final class Reflections {
                 builder.annotate(annotationType);
 
                 for (final java.lang.reflect.Method elementMethod : annotationType.getDeclaredMethods()) {
-                    final Class<?> returnType = elementMethod.getReturnType().isEnum() ?
-                            Enum.class :
+                    final Class<?> returnType = elementMethod.getReturnType();
+                    final Class<?> elementType = returnType.isArray() ?
+                            returnType.getComponentType().isEnum() ?
+                                    Enum[].class :
+                                    returnType
+                            : returnType.isEnum() ?
+                                    Enum.class :
+                                    returnType;
                             elementMethod.getReturnType();
                     final java.lang.reflect.Method valueMethod =
-                            AnnotationValues.Builder.class.getMethod("value", AnnotationElement.class, returnType);
+                            AnnotationValues.Builder.class.getMethod("value", AnnotationElement.class, elementType);
 
                     valueMethod.invoke(builder,
                             AnnotationElement.of(annotationType, elementMethod.getName()),
