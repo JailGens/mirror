@@ -6,6 +6,8 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.common.returnsreceiver.qual.This;
 import org.checkerframework.dataflow.qual.SideEffectFree;
 
+import java.lang.reflect.Proxy;
+
 /**
  * Reflects types.
  *
@@ -45,6 +47,8 @@ public interface Mirror {
      * @param handler the handler.
      * @return the proxy.
      * @param <T> the type of the type.
+     * @throws IllegalArgumentException if any restrictions defined in {@link Proxy} are
+     * violated.
      * @throws NullPointerException if {@code type} or {@code handler} is {@code null}.
      * @since 0.2.0
      */
