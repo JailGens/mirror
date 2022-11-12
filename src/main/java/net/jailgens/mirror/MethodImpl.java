@@ -95,7 +95,8 @@ final class MethodImpl<T extends @NonNull Object, R extends @Nullable Object> im
 
     @SuppressWarnings("unchecked")
     @Override
-    public @NonNull R invoke(final @Nullable T receiver, final @Nullable Object @NonNull ... arguments) {
+    public @NonNull R invoke(final @Nullable T receiver,
+                             final @Nullable Object @NonNull ... arguments) {
 
         Objects.requireNonNull(arguments, "arguments cannot be null");
 
@@ -115,5 +116,32 @@ final class MethodImpl<T extends @NonNull Object, R extends @Nullable Object> im
         } finally {
             method.setAccessible(false);
         }
+    }
+
+    @Override
+    public boolean equals(final @Nullable Object o) {
+
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof MethodImpl)) {
+            return false;
+        }
+
+        MethodImpl<?, ?> other = (MethodImpl<?, ?>) o;
+
+        return declaringType.equals(other.declaringType) &&
+                method.equals(other.method) &&
+                annotations.equals(other.annotations) &&
+                parameters.equals(other.parameters) &&
+                returnType.equals(other.returnType) &&
+                modifiers.equals(other.modifiers);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(declaringType, method, annotations, parameters, returnType, modifiers);
     }
 }

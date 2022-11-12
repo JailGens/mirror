@@ -115,4 +115,31 @@ final class ConstructorImpl<T extends @NonNull Object> implements Constructor<@N
 
         return declaringType.getRawType();
     }
+
+    @Override
+    public boolean equals(final @Nullable Object o) {
+
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof ConstructorImpl)) {
+            return false;
+        }
+
+        ConstructorImpl<?> other = (ConstructorImpl<?>) o;
+
+        return declaringType.equals(other.declaringType) &&
+                constructor.equals(other.constructor) &&
+                annotations.equals(other.annotations) &&
+                parameters.equals(other.parameters) &&
+                type.equals(other.type) &&
+                modifiers.equals(other.modifiers);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(declaringType, constructor, annotations, parameters, type, modifiers);
+    }
 }

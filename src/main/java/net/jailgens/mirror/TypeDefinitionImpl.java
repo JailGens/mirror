@@ -116,4 +116,32 @@ final class TypeDefinitionImpl<T extends @NonNull Object> implements TypeDefinit
 
         return members;
     }
+
+    @Override
+    public boolean equals(final @Nullable Object o) {
+
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof TypeDefinitionImpl)) {
+            return false;
+        }
+
+        TypeDefinitionImpl<?> other = (TypeDefinitionImpl<?>) o;
+
+        return rawType.equals(other.rawType) &&
+                annotations.equals(other.annotations) &&
+                modifiers.equals(other.modifiers) &&
+                fields.equals(other.fields) &&
+                constructors.equals(other.constructors) &&
+                methods.equals(other.methods) &&
+                members.equals(other.members);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(rawType, annotations, modifiers, fields, constructors, methods, members);
+    }
 }

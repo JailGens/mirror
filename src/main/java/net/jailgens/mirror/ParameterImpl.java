@@ -61,4 +61,29 @@ final class ParameterImpl<T extends @Nullable Object> implements Parameter<@NonN
 
         return type.getRawType();
     }
+
+    @Override
+    public boolean equals(final @Nullable Object o) {
+
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof ParameterImpl)) {
+            return false;
+        }
+
+        ParameterImpl<?> other = (ParameterImpl<?>) o;
+
+        return parameter.equals(other.parameter) &&
+                annotations.equals(other.annotations) &&
+                modifiers.equals(other.modifiers) &&
+                type.equals(other.type);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(parameter, annotations, modifiers, type);
+    }
 }
