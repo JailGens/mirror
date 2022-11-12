@@ -107,4 +107,29 @@ final class FieldImpl<R extends @NonNull Object, T extends @Nullable Object> imp
 
         return type.getRawType();
     }
+
+    @Override
+    public boolean equals(final @Nullable Object o) {
+
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof FieldImpl)) {
+            return false;
+        }
+
+        FieldImpl<?, ?> other = (FieldImpl<?, ?>) o;
+
+        return declaringType.equals(other.declaringType) &&
+                field.equals(other.field) &&
+                modifiers.equals(other.modifiers) &&
+                type.equals(other.type);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(declaringType, field, modifiers, type);
+    }
 }
