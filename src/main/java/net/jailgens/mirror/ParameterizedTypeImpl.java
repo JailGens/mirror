@@ -103,16 +103,15 @@ final class ParameterizedTypeImpl<T extends @Nullable Object> implements Paramet
         final StringBuilder typeName = new StringBuilder(getAnnotations().toString())
                 .append(getRawType().getTypeName());
 
-        if (!getTypeArguments().isEmpty()) {
-            final StringJoiner typeArguments = new StringJoiner(",", "<", ">");
+        if (getTypeArguments().isEmpty()) {
+            return typeName.toString();
+        }
+        final StringJoiner typeArguments = new StringJoiner(",", "<", ">");
 
-            for (final ParameterizedType<?> typeArgument : getTypeArguments()) {
-                typeArguments.add(typeArgument.getTypeName());
-            }
-
-            typeName.append(typeArguments);
+        for (final ParameterizedType<?> typeArgument : getTypeArguments()) {
+            typeArguments.add(typeArgument.getTypeName());
         }
 
-        return typeName.toString();
+        return typeName.append(typeArguments).toString();
     }
 }
