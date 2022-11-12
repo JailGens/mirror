@@ -1,5 +1,7 @@
 package net.jailgens.mirror;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.lang.annotation.Annotation;
@@ -217,848 +219,1222 @@ class AnnotationValuesTest {
         );
     }
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithIntValue_When_GetInt_Then_ReturnsValue() {
+    @Nested
+    @DisplayName("Get* when present tests")
+    class GetTest {
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), 1)
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithIntValue_When_GetInt_Then_ReturnsValue() {
 
-        final OptionalInt testAnnotationElementValue =
-                values.getInt(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), 1)
+                    .build();
 
-        assertEquals(OptionalInt.of(1), testAnnotationElementValue);
-    }
+            final OptionalInt testAnnotationElementValue =
+                    values.getInt(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithByteValue_When_GetByte_Then_ReturnsValue() {
+            assertEquals(OptionalInt.of(1), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), (byte) 1)
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithByteValue_When_GetByte_Then_ReturnsValue() {
 
-        final Optional<Byte> testAnnotationElementValue =
-                values.getByte(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), (byte) 1)
+                    .build();
 
-        assertEquals(Optional.of((byte) 1), testAnnotationElementValue);
-    }
+            final Optional<Byte> testAnnotationElementValue =
+                    values.getByte(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithShortValue_When_GetShort_Then_ReturnsValue() {
+            assertEquals(Optional.of((byte) 1), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), (short) 1)
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithShortValue_When_GetShort_Then_ReturnsValue() {
 
-        final Optional<Short> testAnnotationElementValue =
-                values.getShort(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), (short) 1)
+                    .build();
 
-        assertEquals(Optional.of((short) 1), testAnnotationElementValue);
-    }
+            final Optional<Short> testAnnotationElementValue =
+                    values.getShort(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithLongValue_When_GetLong_Then_ReturnsValue() {
+            assertEquals(Optional.of((short) 1), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), (long) 1)
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithLongValue_When_GetLong_Then_ReturnsValue() {
 
-        final OptionalLong testAnnotationElementValue =
-                values.getLong(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), (long) 1)
+                    .build();
 
-        assertEquals(OptionalLong.of(1), testAnnotationElementValue);
-    }
+            final OptionalLong testAnnotationElementValue =
+                    values.getLong(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithFloatValue_When_GetFloat_Then_ReturnsValue() {
+            assertEquals(OptionalLong.of(1), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), (float) 1)
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithFloatValue_When_GetFloat_Then_ReturnsValue() {
 
-        final Optional<Float> testAnnotationElementValue =
-                values.getFloat(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), (float) 1)
+                    .build();
 
-        assertEquals(Optional.of((float) 1), testAnnotationElementValue);
-    }
+            final Optional<Float> testAnnotationElementValue =
+                    values.getFloat(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithDoubleValue_When_GetDouble_Then_ReturnsValue() {
+            assertEquals(Optional.of((float) 1), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), (double) 1)
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithDoubleValue_When_GetDouble_Then_ReturnsValue() {
 
-        final OptionalDouble testAnnotationElementValue =
-                values.getDouble(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), (double) 1)
+                    .build();
 
-        assertEquals(OptionalDouble.of(1), testAnnotationElementValue);
-    }
+            final OptionalDouble testAnnotationElementValue =
+                    values.getDouble(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithBooleanValue_When_GetBoolean_Then_ReturnsValue() {
+            assertEquals(OptionalDouble.of(1), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), true)
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithBooleanValue_When_GetBoolean_Then_ReturnsValue() {
 
-        final Optional<Boolean> testAnnotationElementValue =
-                values.getBoolean(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), true)
+                    .build();
 
-        assertEquals(Optional.of(true), testAnnotationElementValue);
-    }
+            final Optional<Boolean> testAnnotationElementValue =
+                    values.getBoolean(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithCharValue_When_GetChar_Then_ReturnsValue() {
+            assertEquals(Optional.of(true), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), 'a')
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithCharValue_When_GetChar_Then_ReturnsValue() {
 
-        final Optional<Character> testAnnotationElementValue =
-                values.getChar(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), 'a')
+                    .build();
 
-        assertEquals(Optional.of('a'), testAnnotationElementValue);
-    }
+            final Optional<Character> testAnnotationElementValue =
+                    values.getChar(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithStringValue_When_GetString_Then_ReturnsValue() {
+            assertEquals(Optional.of('a'), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "some value")
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithStringValue_When_GetString_Then_ReturnsValue() {
 
-        final Optional<String> testAnnotationElementValue =
-                values.getString(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "some value")
+                    .build();
 
-        assertEquals(Optional.of("some value"), testAnnotationElementValue);
-    }
+            final Optional<String> testAnnotationElementValue =
+                    values.getString(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithEnumValue_When_GetEnum_Then_ReturnsValue() {
+            assertEquals(Optional.of("some value"), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), RetentionPolicy.SOURCE)
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithEnumValue_When_GetEnum_Then_ReturnsValue() {
 
-        final Optional<RetentionPolicy> testAnnotationElementValue =
-                values.getEnum(AnnotationElement.value(Annotation.class), RetentionPolicy.class);
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), RetentionPolicy.SOURCE)
+                    .build();
 
-        assertEquals(Optional.of(RetentionPolicy.SOURCE), testAnnotationElementValue);
-    }
+            final Optional<RetentionPolicy> testAnnotationElementValue =
+                    values.getEnum(AnnotationElement.value(Annotation.class), RetentionPolicy.class);
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithAnnotationValue_When_getAnnotation_Then_ReturnsValue() {
+            assertEquals(Optional.of(RetentionPolicy.SOURCE), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), AnnotationValues.empty())
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithAnnotationValue_When_GetAnnotation_Then_ReturnsValue() {
 
-        final Optional<AnnotationValues> testAnnotationElementValue =
-                values.getAnnotation(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), AnnotationValues.empty())
+                    .build();
 
-        assertEquals(Optional.of(AnnotationValues.empty()), testAnnotationElementValue);
-    }
+            final Optional<AnnotationValues> testAnnotationElementValue =
+                    values.getAnnotation(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithClassValue_When_getClass_Then_ReturnsValue() {
+            assertEquals(Optional.of(AnnotationValues.empty()), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), Object.class)
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithClassValue_When_GetClass_Then_ReturnsValue() {
 
-        final Optional<Class<?>> testAnnotationElementValue =
-                values.getClass(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), Object.class)
+                    .build();
 
-        assertEquals(Optional.of(Object.class), testAnnotationElementValue);
-    }
+            final Optional<Class<?>> testAnnotationElementValue =
+                    values.getClass(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithIntValues_When_GetInts_Then_ReturnsValue() {
+            assertEquals(Optional.of(Object.class), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), new int[]{1})
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithIntValues_When_GetInts_Then_ReturnsValue() {
 
-        final int[] testAnnotationElementValue =
-                values.getInts(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), new int[]{1})
+                    .build();
 
-        assertArrayEquals(new int[]{1}, testAnnotationElementValue);
-    }
+            final int[] testAnnotationElementValue =
+                    values.getInts(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithByteValues_When_GetBytes_Then_ReturnsValue() {
+            assertArrayEquals(new int[]{1}, testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), new byte[]{1})
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithByteValues_When_GetBytes_Then_ReturnsValue() {
 
-        final byte[] testAnnotationElementValue =
-                values.getBytes(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), new byte[]{1})
+                    .build();
 
-        assertArrayEquals(new byte[]{1}, testAnnotationElementValue);
-    }
+            final byte[] testAnnotationElementValue =
+                    values.getBytes(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithsHORTValues_When_GetsHORTs_Then_ReturnsValue() {
+            assertArrayEquals(new byte[]{1}, testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), new short[]{1})
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithsHORTValues_When_GetsHORTs_Then_ReturnsValue() {
 
-        final short[] testAnnotationElementValue =
-                values.getShorts(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), new short[]{1})
+                    .build();
 
-        assertArrayEquals(new short[]{1}, testAnnotationElementValue);
-    }
+            final short[] testAnnotationElementValue =
+                    values.getShorts(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithLongValues_When_GetLongs_Then_ReturnsValue() {
+            assertArrayEquals(new short[]{1}, testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), new long[]{1})
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithLongValues_When_GetLongs_Then_ReturnsValue() {
 
-        final long[] testAnnotationElementValue =
-                values.getLongs(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), new long[]{1})
+                    .build();
 
-        assertArrayEquals(new long[]{1}, testAnnotationElementValue);
-    }
+            final long[] testAnnotationElementValue =
+                    values.getLongs(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithFloatValues_When_GetFloats_Then_ReturnsValue() {
+            assertArrayEquals(new long[]{1}, testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), new float[]{1})
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithFloatValues_When_GetFloats_Then_ReturnsValue() {
 
-        final float[] testAnnotationElementValue =
-                values.getFloats(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), new float[]{1})
+                    .build();
 
-        assertArrayEquals(new float[]{1}, testAnnotationElementValue);
-    }
+            final float[] testAnnotationElementValue =
+                    values.getFloats(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithDoubleValues_When_GetDoubles_Then_ReturnsValue() {
+            assertArrayEquals(new float[]{1}, testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), new double[]{1})
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithDoubleValues_When_GetDoubles_Then_ReturnsValue() {
 
-        final double[] testAnnotationElementValue =
-                values.getDoubles(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), new double[]{1})
+                    .build();
 
-        assertArrayEquals(new double[]{1}, testAnnotationElementValue);
-    }
+            final double[] testAnnotationElementValue =
+                    values.getDoubles(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithBooleanValues_When_GetBooleans_Then_ReturnsValue() {
+            assertArrayEquals(new double[]{1}, testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), new boolean[]{true})
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithBooleanValues_When_GetBooleans_Then_ReturnsValue() {
 
-        final boolean[] testAnnotationElementValue =
-                values.getBooleans(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), new boolean[]{true})
+                    .build();
 
-        assertArrayEquals(new boolean[]{true}, testAnnotationElementValue);
-    }
+            final boolean[] testAnnotationElementValue =
+                    values.getBooleans(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithCharValues_When_GetChars_Then_ReturnsValue() {
+            assertArrayEquals(new boolean[]{true}, testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), new char[]{'a'})
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithCharValues_When_GetChars_Then_ReturnsValue() {
 
-        final char[] testAnnotationElementValue =
-                values.getChars(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), new char[]{'a'})
+                    .build();
 
-        assertArrayEquals(new char[]{'a'}, testAnnotationElementValue);
-    }
+            final char[] testAnnotationElementValue =
+                    values.getChars(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithStringValues_When_GetStrings_Then_ReturnsValue() {
+            assertArrayEquals(new char[]{'a'}, testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), new String[]{"some value"})
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithStringValues_When_GetStrings_Then_ReturnsValue() {
 
-        final List<String> testAnnotationElementValue =
-                values.getStrings(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), new String[]{"some value"})
+                    .build();
 
-        assertEquals(List.of("some value"), testAnnotationElementValue);
-    }
+            final List<String> testAnnotationElementValue =
+                    values.getStrings(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithEnumValues_When_GetEnums_Then_ReturnsValue() {
+            assertEquals(List.of("some value"), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class),
-                        new RetentionPolicy[]{RetentionPolicy.SOURCE})
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithEnumValues_When_GetEnums_Then_ReturnsValue() {
 
-        final List<RetentionPolicy> testAnnotationElementValue =
-                values.getEnums(AnnotationElement.value(Annotation.class),
-                        RetentionPolicy.class);
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class),
+                            new RetentionPolicy[]{RetentionPolicy.SOURCE})
+                    .build();
 
-        assertEquals(List.of(RetentionPolicy.SOURCE), testAnnotationElementValue);
-    }
+            final List<RetentionPolicy> testAnnotationElementValue =
+                    values.getEnums(AnnotationElement.value(Annotation.class),
+                            RetentionPolicy.class);
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithAnnotationValues_When_getAnnotations_Then_ReturnsValue() {
+            assertEquals(List.of(RetentionPolicy.SOURCE), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class),
-                        new AnnotationValues[]{AnnotationValues.empty()})
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithAnnotationValues_When_GetAnnotations_Then_ReturnsValue() {
 
-        final List<AnnotationValues> testAnnotationElementValue =
-                values.getAnnotations(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class),
+                            new AnnotationValues[]{AnnotationValues.empty()})
+                    .build();
 
-        assertEquals(List.of(AnnotationValues.empty()), testAnnotationElementValue);
-    }
+            final List<AnnotationValues> testAnnotationElementValue =
+                    values.getAnnotations(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotatedAnnotationValuesWithClassValues_When_getClasses_Then_ReturnsValue() {
+            assertEquals(List.of(AnnotationValues.empty()), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), new Class[]{Object.class})
-                .build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithClassValues_When_GetClasses_Then_ReturnsValue() {
 
-        final List<Class<?>> testAnnotationElementValue =
-                values.getClasses(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), new Class[]{Object.class})
+                    .build();
 
-        assertEquals(List.of(Object.class), testAnnotationElementValue);
-    }
+            final List<Class<?>> testAnnotationElementValue =
+                    values.getClasses(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getInt_Then_ReturnsEmptyOptional() {
+            assertEquals(List.of(Object.class), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+        @Test
+        void Given_AnnotatedAnnotationValuesWithAnyValue_When_GetBoxed_Then_ReturnsValue() {
 
-        final OptionalInt annotationElementValue =
-                values.getInt(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "test")
+                    .build();
 
-        assertEquals(OptionalInt.empty(), annotationElementValue);
-    }
+            final Optional<Object> testAnnotationElementValue =
+                    values.getBoxed(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getByte_Then_ReturnsEmptyOptional() {
+            assertEquals(Optional.of("test"), testAnnotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+        @Test
+        void Given_AnnotatedAnnotationValuesBoxedValue_When_GetBoxed_Then_ReturnsValue() {
 
-        final Optional<Byte> annotationElementValue =
-                values.getByte(AnnotationElement.value(Annotation.class));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), "test")
+                    .build();
 
-        assertEquals(Optional.empty(), annotationElementValue);
+            final Optional<Object> testAnnotationElementValue =
+                    values.getBoxed(AnnotationElement.value(Annotation.class));
+
+            assertEquals(Optional.of("test"), testAnnotationElementValue);
+        }
     }
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getShort_Then_ReturnsEmptyOptional() {
+    @Nested
+    @DisplayName("Get* when not present tests")
+    class GetWhenNotPresentTest {
 
-        final AnnotationValues values = AnnotationValues.builder().build();
 
-        final Optional<Short> annotationElementValue =
-                values.getShort(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetInt_Then_ReturnsEmptyOptional() {
 
-        assertEquals(Optional.empty(), annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getLong_Then_ReturnsEmptyOptional() {
+            final OptionalInt annotationElementValue =
+                    values.getInt(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertEquals(OptionalInt.empty(), annotationElementValue);
+        }
 
-        final OptionalLong annotationElementValue =
-                values.getLong(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetByte_Then_ReturnsEmptyOptional() {
 
-        assertEquals(OptionalLong.empty(), annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getFloat_Then_ReturnsEmptyOptional() {
+            final Optional<Byte> annotationElementValue =
+                    values.getByte(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertEquals(Optional.empty(), annotationElementValue);
+        }
 
-        final Optional<Float> annotationElementValue =
-                values.getFloat(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetShort_Then_ReturnsEmptyOptional() {
 
-        assertEquals(Optional.empty(), annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getDouble_Then_ReturnsEmptyOptional() {
+            final Optional<Short> annotationElementValue =
+                    values.getShort(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertEquals(Optional.empty(), annotationElementValue);
+        }
 
-        final OptionalDouble annotationElementValue =
-                values.getDouble(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetLong_Then_ReturnsEmptyOptional() {
 
-        assertEquals(OptionalDouble.empty(), annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getBoolean_Then_ReturnsEmptyOptional() {
+            final OptionalLong annotationElementValue =
+                    values.getLong(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertEquals(OptionalLong.empty(), annotationElementValue);
+        }
 
-        final Optional<Boolean> annotationElementValue =
-                values.getBoolean(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetFloat_Then_ReturnsEmptyOptional() {
 
-        assertEquals(Optional.empty(), annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getChar_Then_ReturnsEmptyOptional() {
+            final Optional<Float> annotationElementValue =
+                    values.getFloat(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertEquals(Optional.empty(), annotationElementValue);
+        }
 
-        final Optional<Character> annotationElementValue =
-                values.getChar(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetDouble_Then_ReturnsEmptyOptional() {
 
-        assertEquals(Optional.empty(), annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getString_Then_ReturnsEmptyOptional() {
+            final OptionalDouble annotationElementValue =
+                    values.getDouble(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertEquals(OptionalDouble.empty(), annotationElementValue);
+        }
 
-        final Optional<String> annotationElementValue =
-                values.getString(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetBoolean_Then_ReturnsEmptyOptional() {
 
-        assertEquals(Optional.empty(), annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getEnum_Then_ReturnsEmptyOptional() {
+            final Optional<Boolean> annotationElementValue =
+                    values.getBoolean(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertEquals(Optional.empty(), annotationElementValue);
+        }
 
-        final Optional<RetentionPolicy> annotationElementValue =
-                values.getEnum(AnnotationElement.value(Annotation.class), RetentionPolicy.class);
+        @Test
+        void Given_EmptyAnnotationValues_When_GetChar_Then_ReturnsEmptyOptional() {
 
-        assertEquals(Optional.empty(), annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getAnnotation_Then_ReturnsEmptyOptional() {
+            final Optional<Character> annotationElementValue =
+                    values.getChar(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertEquals(Optional.empty(), annotationElementValue);
+        }
 
-        final Optional<AnnotationValues> annotationElementValue =
-                values.getAnnotation(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetString_Then_ReturnsEmptyOptional() {
 
-        assertEquals(Optional.empty(), annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getClass_Then_ReturnsEmptyOptional() {
+            final Optional<String> annotationElementValue =
+                    values.getString(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertEquals(Optional.empty(), annotationElementValue);
+        }
 
-        final Optional<Class<?>> annotationElementValue =
-                values.getClass(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetEnum_Then_ReturnsEmptyOptional() {
 
-        assertEquals(Optional.empty(), annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getInts_Then_ReturnsEmptyIntArray() {
+            final Optional<RetentionPolicy> annotationElementValue =
+                    values.getEnum(AnnotationElement.value(Annotation.class), RetentionPolicy.class);
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertEquals(Optional.empty(), annotationElementValue);
+        }
 
-        final int[] annotationElementValue =
-                values.getInts(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetAnnotation_Then_ReturnsEmptyOptional() {
 
-        assertArrayEquals(new int[0], annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getBytes_Then_ReturnsEmptyByteArray() {
+            final Optional<AnnotationValues> annotationElementValue =
+                    values.getAnnotation(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertEquals(Optional.empty(), annotationElementValue);
+        }
 
-        final byte[] annotationElementValue =
-                values.getBytes(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetClass_Then_ReturnsEmptyOptional() {
 
-        assertArrayEquals(new byte[0], annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getShorts_Then_ReturnsEmptyShortArray() {
+            final Optional<Class<?>> annotationElementValue =
+                    values.getClass(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertEquals(Optional.empty(), annotationElementValue);
+        }
 
-        final short[] annotationElementValue =
-                values.getShorts(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetInts_Then_ReturnsEmptyIntArray() {
 
-        assertArrayEquals(new short[0], annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getLongs_Then_ReturnsEmptyLongArray() {
+            final int[] annotationElementValue =
+                    values.getInts(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertArrayEquals(new int[0], annotationElementValue);
+        }
 
-        final long[] annotationElementValue =
-                values.getLongs(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetBytes_Then_ReturnsEmptyByteArray() {
 
-        assertArrayEquals(new long[0], annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getFloats_Then_ReturnsEmptyFloatArray() {
+            final byte[] annotationElementValue =
+                    values.getBytes(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertArrayEquals(new byte[0], annotationElementValue);
+        }
 
-        final float[] annotationElementValue =
-                values.getFloats(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetShorts_Then_ReturnsEmptyShortArray() {
 
-        assertArrayEquals(new float[0], annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getDoubles_Then_ReturnsEmptyDoubleArray() {
+            final short[] annotationElementValue =
+                    values.getShorts(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertArrayEquals(new short[0], annotationElementValue);
+        }
 
-        final double[] annotationElementValue =
-                values.getDoubles(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetLongs_Then_ReturnsEmptyLongArray() {
 
-        assertArrayEquals(new double[0], annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getBooleans_Then_ReturnsEmptyBooleanArray() {
+            final long[] annotationElementValue =
+                    values.getLongs(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertArrayEquals(new long[0], annotationElementValue);
+        }
 
-        final boolean[] annotationElementValue =
-                values.getBooleans(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetFloats_Then_ReturnsEmptyFloatArray() {
 
-        assertArrayEquals(new boolean[0], annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getChars_Then_ReturnsEmptyCharArray() {
+            final float[] annotationElementValue =
+                    values.getFloats(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertArrayEquals(new float[0], annotationElementValue);
+        }
 
-        final char[] annotationElementValue =
-                values.getChars(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetDoubles_Then_ReturnsEmptyDoubleArray() {
 
-        assertArrayEquals(new char[0], annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getStrings_Then_ReturnsEmptyStringList() {
+            final double[] annotationElementValue =
+                    values.getDoubles(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertArrayEquals(new double[0], annotationElementValue);
+        }
 
-        final List<String> annotationElementValue =
-                values.getStrings(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetBooleans_Then_ReturnsEmptyBooleanArray() {
 
-        assertEquals(List.of(), annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getEnums_Then_ReturnsEmptyEnumList() {
+            final boolean[] annotationElementValue =
+                    values.getBooleans(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertArrayEquals(new boolean[0], annotationElementValue);
+        }
 
-        final List<RetentionPolicy> annotationElementValue =
-                values.getEnums(AnnotationElement.value(Annotation.class), RetentionPolicy.class);
+        @Test
+        void Given_EmptyAnnotationValues_When_GetChars_Then_ReturnsEmptyCharArray() {
 
-        assertEquals(List.of(), annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getAnnotations_Then_ReturnsEmptyAnnotationValuesList() {
+            final char[] annotationElementValue =
+                    values.getChars(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertArrayEquals(new char[0], annotationElementValue);
+        }
 
-        final List<AnnotationValues> annotationElementValue =
-                values.getAnnotations(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetStrings_Then_ReturnsEmptyStringList() {
 
-        assertEquals(List.of(), annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_EmptyAnnotationValues_When_getClasses_Then_ReturnsEmptyClassList() {
+            final List<String> annotationElementValue =
+                    values.getStrings(AnnotationElement.value(Annotation.class));
 
-        final AnnotationValues values = AnnotationValues.builder().build();
+            assertEquals(List.of(), annotationElementValue);
+        }
 
-        final List<Class<?>> annotationElementValue =
-                values.getClasses(AnnotationElement.value(Annotation.class));
+        @Test
+        void Given_EmptyAnnotationValues_When_GetEnums_Then_ReturnsEmptyEnumList() {
 
-        assertEquals(List.of(), annotationElementValue);
-    }
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-    @Test
-    void Given_AnnotationValuesWithNotStringElement_When_GetString_Then_Throws() {
+            final List<RetentionPolicy> annotationElementValue =
+                    values.getEnums(AnnotationElement.value(Annotation.class), RetentionPolicy.class);
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), 0)
-                .build();
+            assertEquals(List.of(), annotationElementValue);
+        }
 
-        assertThrows(ClassCastException.class,
-                () -> values.getString(AnnotationElement.value(Annotation.class)));
-    }
+        @Test
+        void Given_EmptyAnnotationValues_When_GetAnnotations_Then_ReturnsEmptyAnnotationValuesList() {
 
-    @Test
-    void Given_AnnotationValuesWithNotIntElement_When_GetInt_Then_Throws() {
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not int")
-                .build();
+            final List<AnnotationValues> annotationElementValue =
+                    values.getAnnotations(AnnotationElement.value(Annotation.class));
 
-        assertThrows(ClassCastException.class,
-                () -> values.getInt(AnnotationElement.value(Annotation.class)));
-    }
+            assertEquals(List.of(), annotationElementValue);
+        }
 
-    @Test
-    void Given_AnnotationValuesWithNotByteElement_When_GetByte_Then_Throws() {
+        @Test
+        void Given_EmptyAnnotationValues_When_GetClasses_Then_ReturnsEmptyClassList() {
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not byte")
-                .build();
+            final AnnotationValues values = AnnotationValues.builder().build();
 
-        assertThrows(ClassCastException.class,
-                () -> values.getByte(AnnotationElement.value(Annotation.class)));
-    }
+            final List<Class<?>> annotationElementValue =
+                    values.getClasses(AnnotationElement.value(Annotation.class));
 
-    @Test
-    void Given_AnnotationValuesWithNotShortElement_When_GetShort_Then_Throws() {
+            assertEquals(List.of(), annotationElementValue);
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not short")
-                .build();
+        @Test
+        void Given_EmptyAnnotationValues_When_GetBoxed_Then_ReturnsEmptyOptional() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getShort(AnnotationElement.value(Annotation.class)));
+            final AnnotationValues values = AnnotationValues.builder().build();
+
+            final Optional<?> annotationElementValue =
+                    values.getBoxed(AnnotationElement.value(Annotation.class));
+
+            assertEquals(Optional.empty(), annotationElementValue);
+        }
     }
 
-    @Test
-    void Given_AnnotationValuesWithNotLongElement_When_GetLong_Then_Throws() {
+    @Nested
+    @DisplayName("Get* wrong type tests")
+    class GetWrongTypeTest {
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not long")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotStringElement_When_GetString_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getLong(AnnotationElement.value(Annotation.class)));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), 0)
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotFloatElement_When_GetFloat_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getString(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not float")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotIntElement_When_GetInt_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getFloat(AnnotationElement.value(Annotation.class)));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not int")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotDoubleElement_When_GetDouble_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getInt(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not double")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotByteElement_When_GetByte_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getDouble(AnnotationElement.value(Annotation.class)));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not byte")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotBooleanElement_When_GetBoolean_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getByte(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not boolean")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotShortElement_When_GetShort_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getBoolean(AnnotationElement.value(Annotation.class)));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not short")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotCharElement_When_GetChar_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getShort(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not char")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotLongElement_When_GetLong_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getChar(AnnotationElement.value(Annotation.class)));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not long")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotEnumElement_When_GetEnum_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getLong(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not enum")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotFloatElement_When_GetFloat_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getEnum(AnnotationElement.value(Annotation.class),
-                        RetentionPolicy.class));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not float")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotAnnotationElement_When_GetAnnotation_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getFloat(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not annotation")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotDoubleElement_When_GetDouble_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getAnnotation(AnnotationElement.value(Annotation.class)));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not double")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotClassElement_When_GetClass_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getDouble(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not class")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotBooleanElement_When_GetBoolean_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getClass(AnnotationElement.value(Annotation.class)));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not boolean")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotIntsElement_When_GetInts_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getBoolean(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not ints")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotCharElement_When_GetChar_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getInts(AnnotationElement.value(Annotation.class)));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not char")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotBytesElement_When_GetBytes_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getChar(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not bytes")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotEnumElement_When_GetEnum_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getBytes(AnnotationElement.value(Annotation.class)));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not enum")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotShortsElement_When_GetShorts_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getEnum(AnnotationElement.value(Annotation.class),
+                            RetentionPolicy.class));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not shorts")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotAnnotationElement_When_GetAnnotation_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getShorts(AnnotationElement.value(Annotation.class)));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not annotation")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotLongsElement_When_GetLongs_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getAnnotation(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not longs")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotClassElement_When_GetClass_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getLongs(AnnotationElement.value(Annotation.class)));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not class")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotFloatsElement_When_GetFloats_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getClass(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not floats")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotIntsElement_When_GetInts_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getFloats(AnnotationElement.value(Annotation.class)));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not ints")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotDoublesElement_When_GetDoubles_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getInts(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not doubles")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotBytesElement_When_GetBytes_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getDoubles(AnnotationElement.value(Annotation.class)));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not bytes")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotBooleansElement_When_GetBooleans_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getBytes(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not booleans")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotShortsElement_When_GetShorts_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getBooleans(AnnotationElement.value(Annotation.class)));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not shorts")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotCharsElement_When_GetChars_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getShorts(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not chars")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotLongsElement_When_GetLongs_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getChars(AnnotationElement.value(Annotation.class)));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not longs")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotStringsElement_When_GetStrings_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getLongs(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not strings")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotFloatsElement_When_GetFloats_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getStrings(AnnotationElement.value(Annotation.class)));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not floats")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotEnumsElement_When_GetEnums_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getFloats(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not enums")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotDoublesElement_When_GetDoubles_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getEnums(AnnotationElement.value(Annotation.class),
-                        RetentionPolicy.class));
-    }
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not doubles")
+                    .build();
+
+            assertThrows(ClassCastException.class,
+                    () -> values.getDoubles(AnnotationElement.value(Annotation.class)));
+        }
+
+        @Test
+        void Given_AnnotationValuesWithNotBooleansElement_When_GetBooleans_Then_Throws() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not booleans")
+                    .build();
+
+            assertThrows(ClassCastException.class,
+                    () -> values.getBooleans(AnnotationElement.value(Annotation.class)));
+        }
+
+        @Test
+        void Given_AnnotationValuesWithNotCharsElement_When_GetChars_Then_Throws() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not chars")
+                    .build();
+
+            assertThrows(ClassCastException.class,
+                    () -> values.getChars(AnnotationElement.value(Annotation.class)));
+        }
+
+        @Test
+        void Given_AnnotationValuesWithNotStringsElement_When_GetStrings_Then_Throws() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not strings")
+                    .build();
 
-    @Test
-    void Given_AnnotationValuesWithNotAnnotationsElement_When_GetAnnotations_Then_Throws() {
+            assertThrows(ClassCastException.class,
+                    () -> values.getStrings(AnnotationElement.value(Annotation.class)));
+        }
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not AnnotationElement")
-                .build();
+        @Test
+        void Given_AnnotationValuesWithNotEnumsElement_When_GetEnums_Then_Throws() {
 
-        assertThrows(ClassCastException.class,
-                () -> values.getAnnotations(AnnotationElement.value(Annotation.class)));
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not enums")
+                    .build();
+
+            assertThrows(ClassCastException.class,
+                    () -> values.getEnums(AnnotationElement.value(Annotation.class),
+                            RetentionPolicy.class));
+        }
+
+        @Test
+        void Given_AnnotationValuesWithNotAnnotationsElement_When_GetAnnotations_Then_Throws() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not AnnotationElement")
+                    .build();
+
+            assertThrows(ClassCastException.class,
+                    () -> values.getAnnotations(AnnotationElement.value(Annotation.class)));
+        }
+
+        @Test
+        void Given_AnnotationValuesWithNotClassesElement_When_GetClasses_Then_Throws() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Annotation.class), "not classes")
+                    .build();
+
+            assertThrows(ClassCastException.class,
+                    () -> values.getClasses(AnnotationElement.value(Annotation.class)));
+        }
     }
+
+    @Nested
+    @DisplayName("BoxedValue type tests")
+    class BoxedValueTypeTest {
+
+        @Test
+        void Given_AnnotationValuesBuilder_When_BoxedValueUnsupportedType_Then_Throws() {
+
+            final AnnotationValues.Builder builder = AnnotationValues.builder();
+
+            assertThrows(ClassCastException.class,
+                    () -> builder.boxedValue(AnnotationElement.value(Annotation.class), List.of()));
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedInt_Then_GetInt_ReturnsInt() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), 1)
+                    .build();
+
+            final OptionalInt value = values.getInt(AnnotationElement.value(Annotation.class));
+
+            assertEquals(OptionalInt.of(1), value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedByte_Then_GetByte_ReturnsByte() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), (byte) 1)
+                    .build();
+
+            final Optional<Byte> value = values.getByte(AnnotationElement.value(Annotation.class));
+
+            assertEquals(Optional.of((byte) 1), value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedShort_Then_GetShort_ReturnsShort() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), (short) 1)
+                    .build();
+
+            final Optional<Short> value = values.getShort(AnnotationElement.value(Annotation.class));
+
+            assertEquals(Optional.of((short) 1), value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedLong_Then_GetLong_ReturnsLong() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), 1L)
+                    .build();
+
+            final OptionalLong value = values.getLong(AnnotationElement.value(Annotation.class));
+
+            assertEquals(OptionalLong.of(1L), value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedFloat_Then_GetFloat_ReturnsFloat() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), 1.0F)
+                    .build();
+
+            final Optional<Float> value = values.getFloat(AnnotationElement.value(Annotation.class));
+
+            assertEquals(Optional.of(1.0f), value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedDouble_Then_GetDouble_ReturnsDouble() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), 1.0D)
+                    .build();
+
+            final OptionalDouble value = values.getDouble(AnnotationElement.value(Annotation.class));
+
+            assertEquals(OptionalDouble.of(1.0d), value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedBoolean_Then_GetBoolean_ReturnsBoolean() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), true)
+                    .build();
+
+            final Optional<Boolean> value = values.getBoolean(AnnotationElement.value(Annotation.class));
+
+            assertEquals(Optional.of(true), value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedChar_Then_GetChar_ReturnsChar() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), 'a')
+                    .build();
+
+            final Optional<Character> value = values.getChar(AnnotationElement.value(Annotation.class));
+
+            assertEquals(Optional.of('a'), value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedString_Then_GetString_ReturnsString() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), "string")
+                    .build();
+
+            final Optional<String> value = values.getString(AnnotationElement.value(Annotation.class));
+
+            assertEquals(Optional.of("string"), value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedEnum_Then_GetEnum_ReturnsEnum() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), RetentionPolicy.RUNTIME)
+                    .build();
+
+            final Optional<RetentionPolicy> value = values.getEnum(AnnotationElement.value(Annotation.class), RetentionPolicy.class);
+
+            assertEquals(Optional.of(RetentionPolicy.RUNTIME), value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedAnnotation_Then_GetAnnotation_ReturnsAnnotation() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class),
+                            AnnotationValues.builder()
+                                    .value(AnnotationElement.value(Annotation.class), 10)
+                                    .build()
+                    ).build();
+
+            final Optional<AnnotationValues> value = values.getAnnotation(AnnotationElement.value(Annotation.class));
+
+            assertEquals(Optional.of(
+                    AnnotationValues.builder()
+                            .value(AnnotationElement.value(Annotation.class), 10)
+                            .build()
+            ), value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedClass_Then_GetClass_ReturnsClass() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), String.class)
+                    .build();
+
+            final Optional<Class<?>> value = values.getClass(AnnotationElement.value(Annotation.class));
+
+            assertEquals(Optional.of(String.class), value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedInts_Then_GetInts_ReturnsInts() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), new int[]{1, 2, 3})
+                    .build();
+
+            final int[] value = values.getInts(AnnotationElement.value(Annotation.class));
+
+            assertArrayEquals(new int[]{1, 2, 3}, value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedBytes_Then_GetBytes_ReturnsBytes() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), new byte[]{1, 2, 3})
+                    .build();
+
+            final byte[] value = values.getBytes(AnnotationElement.value(Annotation.class));
+
+            assertArrayEquals(new byte[]{1, 2, 3}, value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedShorts_Then_GetShorts_ReturnsShorts() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), new short[]{1, 2, 3})
+                    .build();
+
+            final short[] value = values.getShorts(AnnotationElement.value(Annotation.class));
+
+            assertArrayEquals(new short[]{1, 2, 3}, value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedLongs_Then_GetLongs_ReturnsLongs() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), new long[]{1, 2, 3})
+                    .build();
+
+            final long[] value = values.getLongs(AnnotationElement.value(Annotation.class));
+
+            assertArrayEquals(new long[]{1, 2, 3}, value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedFloats_Then_GetFloats_ReturnsFloats() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), new float[]{1.0F, 2.0F, 3.0F})
+                    .build();
+
+            final float[] value = values.getFloats(AnnotationElement.value(Annotation.class));
+
+            assertArrayEquals(new float[]{1.0F, 2.0F, 3.0F}, value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedDoubles_Then_GetDoubles_ReturnsDoubles() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), new double[]{1.0D, 2.0D, 3.0D})
+                    .build();
+
+            final double[] value = values.getDoubles(AnnotationElement.value(Annotation.class));
+
+            assertArrayEquals(new double[]{1.0D, 2.0D, 3.0D}, value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedBooleans_Then_GetBooleans_ReturnsBooleans() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), new boolean[]{true, false, true})
+                    .build();
+
+            final boolean[] value = values.getBooleans(AnnotationElement.value(Annotation.class));
+
+            assertArrayEquals(new boolean[]{true, false, true}, value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedChars_Then_GetChars_ReturnsChars() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), new char[]{'a', 'b', 'c'})
+                    .build();
+
+            final char[] value = values.getChars(AnnotationElement.value(Annotation.class));
+
+            assertArrayEquals(new char[]{'a', 'b', 'c'}, value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedStrings_Then_GetStrings_ReturnsStrings() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), new String[]{"a", "b", "c"})
+                    .build();
+
+            final List<String> value = values.getStrings(AnnotationElement.value(Annotation.class));
+
+            assertEquals(List.of("a", "b", "c"), value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedEnums_Then_GetEnum_ReturnsEnum() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), new RetentionPolicy[]{RetentionPolicy.RUNTIME, RetentionPolicy.CLASS})
+                    .build();
+
+            final List<RetentionPolicy> value = values.getEnums(AnnotationElement.value(Annotation.class), RetentionPolicy.class);
+
+            assertEquals(List.of(RetentionPolicy.RUNTIME, RetentionPolicy.CLASS), value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedAnnotations_Then_GetAnnotation_ReturnsAnnotation() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class),
+                            new AnnotationValues[]{AnnotationValues.builder()
+                                    .value(AnnotationElement.value(Annotation.class), 10)
+                                    .build(),
+                                    AnnotationValues.builder()
+                                            .value(AnnotationElement.value(Annotation.class), 20)
+                                            .build()
+                            })
+                    .build();
+
+            final List<AnnotationValues> value = values.getAnnotations(AnnotationElement.value(Annotation.class));
+
+            assertEquals(List.of(AnnotationValues.builder()
+                            .value(AnnotationElement.value(Annotation.class), 10)
+                            .build(),
+                    AnnotationValues.builder()
+                            .value(AnnotationElement.value(Annotation.class), 20)
+                            .build()), value);
+        }
+
+        @Test
+        void Given_AnnotationValuesWithBoxedClasses_Then_GetClass_ReturnsClass() {
 
-    @Test
-    void Given_AnnotationValuesWithNotClassesElement_When_GetClasses_Then_Throws() {
+            final AnnotationValues values = AnnotationValues.builder()
+                    .boxedValue(AnnotationElement.value(Annotation.class), new Class[]{String.class, Integer.class})
+                    .build();
 
-        final AnnotationValues values = AnnotationValues.builder()
-                .value(AnnotationElement.value(Annotation.class), "not classes")
-                .build();
+            final List<Class<?>> value = values.getClasses(AnnotationElement.value(Annotation.class));
 
-        assertThrows(ClassCastException.class,
-                () -> values.getClasses(AnnotationElement.value(Annotation.class)));
+            assertEquals(List.of(String.class, Integer.class), value);
+        }
     }
 }

@@ -110,6 +110,17 @@ public interface AnnotationValues {
     @NonNull Set<@NonNull String> getAnnotationTypes();
 
     /**
+     * Gets the value of the specified element.
+     *
+     * @param annotationElement the element.
+     * @return the value of the specified element.
+     * @throws NullPointerException if {@code annotationElement} is {@code null}.
+     * @since 0.3.0
+     */
+    @SideEffectFree
+    @NonNull Optional<@NonNull Object> getBoxed(@NonNull AnnotationElement annotationElement);
+
+    /**
      * Returns an optional containing the integer value of the specified element.
      *
      * @param annotationElement the element.
@@ -740,6 +751,21 @@ public interface AnnotationValues {
         @SuppressWarnings("unchecked")
         @NonNull @This Builder value(@NonNull AnnotationElement element,
                                      @NonNull Class<? extends @NonNull Object> @NonNull ... value);
+
+        // named boxedValue so consumers have to explicitly state they want to use boxed values
+
+        /**
+         * Sets the value of the specified element to the specified value.
+         *
+         * @param element the element.
+         * @param value the value.
+         * @return the builder instance (for chaining).
+         * @throws NullPointerException if {@code element} is null or {@code value} contains or is {@code null}.
+         * @throws ClassCastException if {@code value} isn't a supported boxed type.
+         * @since 0.3.0
+         */
+        @NonNull @This Builder boxedValue(@NonNull AnnotationElement element,
+                                          @NonNull Object value);
 
         /**
          * Builds the annotation values.
