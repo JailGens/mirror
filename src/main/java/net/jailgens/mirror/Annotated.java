@@ -43,7 +43,7 @@ public interface Annotated {
      * Gets the raw annotations this is annotated with.
      *
      * @return the raw annotations this is annotated with.
-     * @since 0.0.0
+     * @since 0.4.0
      */
     @NonNull List<@NonNull Annotation> getRawAnnotations();
 }
