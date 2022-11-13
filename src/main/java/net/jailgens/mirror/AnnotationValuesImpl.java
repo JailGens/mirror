@@ -30,6 +30,8 @@ final class AnnotationValuesImpl implements AnnotationValues {
 
     public static final AnnotationValues EMPTY = new AnnotationValuesImpl(Set.of(), Map.of());
 
+    private static final Mirror DEFAULT_MIRROR = Mirror.builder().build();
+
     private static final int[] EMPTY_INTS = new int[0];
     private static final byte[] EMPTY_BYTES = new byte[0];
     private static final short[] EMPTY_SHORTS = new short[0];

@@ -5,12 +5,15 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.annotation.Annotation;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SuppressWarnings({"unused", "InstantiationOfUtilityClass"})
@@ -73,7 +76,7 @@ class MethodTest {
 
             }
         }
-        final Method<TestClass, ?> method = reflectMethod(TestClass.class, "method");
+        final Method<?, ?> method = reflectMethod(TestClass.class, "method");
 
         final List<Parameter<?>> parameters = method.getParameters();
 
@@ -85,6 +88,12 @@ class MethodTest {
         assertEquals(Set.of(Modifier.FINAL), parameters.get(0).getModifiers());
         assertEquals(ParameterizedType.of(String.class), parameters.get(0).getType());
         assertEquals(String.class, parameters.get(0).getRawType());
+        assertNotNull(parameters.get(0).getRawAnnotation(TestAnnotation.class));
+        assertEquals("param1", parameters.get(0).getRawAnnotation(TestAnnotation.class).value());
+        assertEquals(1, parameters.get(0).getRawAnnotations().size());
+        assertEquals(TestAnnotation.class, parameters.get(0).getRawAnnotations().get(0).annotationType());
+        assertEquals("param1", ((TestAnnotation) parameters.get(0).getRawAnnotations().get(0)).value());
+
         assertEquals(AnnotationValues.builder()
                         .value(AnnotationElement.value(TestAnnotation.class), "param2")
                         .build(),
@@ -93,6 +102,11 @@ class MethodTest {
         assertEquals(Set.of(), parameters.get(1).getModifiers());
         assertEquals(ParameterizedType.of(Integer.class), parameters.get(1).getType());
         assertEquals(Integer.class, parameters.get(1).getRawType());
+        assertNotNull(parameters.get(1).getRawAnnotation(TestAnnotation.class));
+        assertEquals("param2", parameters.get(1).getRawAnnotation(TestAnnotation.class).value());
+        assertEquals(1, parameters.get(1).getRawAnnotations().size());
+        assertEquals(TestAnnotation.class, parameters.get(1).getRawAnnotations().get(0).annotationType());
+        assertEquals("param2", ((TestAnnotation) parameters.get(1).getRawAnnotations().get(0)).value());
     }
 
     @Test
@@ -328,5 +342,58 @@ class MethodTest {
         final Method<TestClass, Void> method = reflectMethod(TestClass.class, "method");
 
         assertThrows(NullPointerException.class, () -> method.invoke(null));
+    }
+
+    @Test
+    void Given_AnnotatedMethod_When_GetRawAnnotation_Then_ReturnsAnnotation() {
+
+        class TestClass {
+
+            @TestAnnotation("test value")
+            void method() {
+
+            }
+        }
+        final Method<?, ?> method = reflectMethod(TestClass.class, "method");
+
+        final TestAnnotation annotation = method.getRawAnnotation(TestAnnotation.class);
+
+        assertNotNull(annotation);
+        assertEquals("test value", annotation.value());
+    }
+
+    @Test
+    void Given_UnannotatedMethod_When_GetRawAnnotation_Then_ReturnsNull() {
+
+        class TestClass {
+
+            void method() {
+
+            }
+        }
+        final Method<?, ?> method = reflectMethod(TestClass.class, "method");
+
+        final TestAnnotation annotation = method.getRawAnnotation(TestAnnotation.class);
+
+        assertNull(annotation);
+    }
+
+    @Test
+    void Given_AnnotatedMethod_When_GetRawAnnotations_Then_ReturnsAnnotations() {
+
+        class TestClass {
+
+            @TestAnnotation("test value")
+            void method() {
+
+            }
+        }
+        final Method<?, ?> method = reflectMethod(TestClass.class, "method");
+
+        final List<Annotation> annotations = method.getRawAnnotations();
+
+        assertEquals(1, annotations.size());
+        assertEquals(TestAnnotation.class, annotations.get(0).annotationType());
+        assertEquals("test value", ((TestAnnotation) annotations.get(0)).value());
     }
 }
