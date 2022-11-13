@@ -161,19 +161,13 @@ final class TypeDefinitionImpl<T extends @NonNull Object> implements TypeDefinit
 
         TypeDefinitionImpl<?> other = (TypeDefinitionImpl<?>) o;
 
-        return rawType.equals(other.rawType) &&
-                annotations.equals(other.annotations) &&
-                modifiers.equals(other.modifiers) &&
-                fields.equals(other.fields) &&
-                constructors.equals(other.constructors) &&
-                methods.equals(other.methods) &&
-                members.equals(other.members);
+        return rawType.equals(other.rawType);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(rawType, annotations, modifiers, fields, constructors, methods, members);
+        return Objects.hash(rawType);
     }
 
     @Override

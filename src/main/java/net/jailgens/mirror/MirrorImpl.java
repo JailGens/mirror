@@ -102,18 +102,18 @@ final class MirrorImpl implements Mirror {
         @Override
         public @NonNull @This Builder cache(boolean cache) {
 
-            this.cache = true;
+            this.cache = cache;
             return this;
         }
 
         @Override
         public @NonNull Mirror build() {
 
-            if (classLoader == null) {
+            if (classLoader == null && cache) {
                 return Instance.INSTANCE;
             }
 
-            return new MirrorImpl(cache, classLoader);
+            return new MirrorImpl(cache, classLoader == null ? DEFAULT_CLASS_LOADER : classLoader);
         }
     }
 }
