@@ -31,7 +31,7 @@ class FieldTest {
     @BeforeEach
     void setUp() {
 
-        mirror = Mirror.builder().build();
+        mirror = Mirror.builder().cache(false).build();
     }
 
     @Test
