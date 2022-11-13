@@ -5,6 +5,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.dataflow.qual.Pure;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -100,4 +101,40 @@ public interface TypeDefinition<T extends @NonNull Object> extends Annotated {
      */
     @Pure
     @NonNull Collection<@NonNull Member<@NonNull T>> getMembers();
+
+    /**
+     * Gets this type's inner types.
+     *
+     * @return the type's inner types.
+     * @since 0.4.0
+     */
+    @Pure
+    default @NonNull Collection<@NonNull TypeDefinition<? extends @NonNull Object>> getInnerTypes() {
+
+        return List.of();
+    }
+
+    /**
+     * Gets this member's declaring type.
+     *
+     * @return this member's declaring type.
+     * @since 0.4.0
+     */
+    @Pure
+    default @Nullable TypeDefinition<? extends @NonNull Object> getDeclaringType() {
+
+        return null;
+    }
+
+    /**
+     * Gets this member's raw declaring type.
+     *
+     * @return this member's raw declaring type.
+     * @since 0.4.0
+     */
+    @Pure
+    default @Nullable Class<? extends @NonNull Object> getRawDeclaringType() {
+
+        return null;
+    }
 }

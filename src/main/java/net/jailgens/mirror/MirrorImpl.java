@@ -49,7 +49,7 @@ final class MirrorImpl implements Mirror {
             return (TypeDefinition<T>) cachedTypeDefinition;
         }
 
-        final TypeDefinition<T> typeDefinition = new TypeDefinitionImpl<>(cls);
+        final TypeDefinition<T> typeDefinition = new TypeDefinitionImpl<>(this, cls);
         typeDefinitionCache.put(cls, typeDefinition);
         return typeDefinition;
     }
