@@ -2,6 +2,9 @@ package net.jailgens.mirror;
 
 import org.junit.jupiter.api.Test;
 
+import java.lang.annotation.Annotation;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -10,9 +13,17 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParameterizedTypeTest {
+
+    @Retention(RetentionPolicy.RUNTIME)
+    @interface TestAnnotation {
+
+        String value();
+    }
 
     @SuppressWarnings({"EqualsWithItself", "ConstantConditions"})
     @Test
@@ -107,5 +118,41 @@ class ParameterizedTypeTest {
 
         assertEquals(Collection.class, set.getRawType());
         assertEquals(ParameterizedType.of(String.class), set.getTypeArguments().get(0));
+    }
+
+    @Test
+    void Given_AnnotatedParameterizedType_When_GetRawAnnotation_Then_ReturnsAnnotation() {
+
+        final ParameterizedType<?> parameterizedType = ParameterizedType.of(AnnotationValues.builder()
+                .value(AnnotationElement.value(TestAnnotation.class), "test value")
+                .build(), String.class);
+
+        final TestAnnotation annotation = parameterizedType.getRawAnnotation(TestAnnotation.class);
+
+        assertNotNull(annotation);
+        assertEquals("test value", annotation.value());
+    }
+
+    @Test
+    void Given_UnannotatedParameterizedType_When_GetRawAnnotation_Then_ReturnsNull() {
+
+        final ParameterizedType<?> parameterizedType = ParameterizedType.of(String.class);
+
+        final TestAnnotation annotation = parameterizedType.getRawAnnotation(TestAnnotation.class);
+
+        assertNull(annotation);
+    }
+
+    @Test
+    void Given_AnnotatedParameterizedType_When_GetRawAnnotations_Then_ReturnsAnnotations() {
+
+        final ParameterizedType<?> parameterizedType = ParameterizedType.of(AnnotationValues.builder()
+                .value(AnnotationElement.value(TestAnnotation.class), "test value")
+                .build(), String.class);
+
+        final List<Annotation> annotations = parameterizedType.getRawAnnotations();
+
+        // not possible to fully implement
+        assertEquals(0, annotations.size());
     }
 }

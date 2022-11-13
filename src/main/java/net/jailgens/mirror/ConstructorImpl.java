@@ -4,8 +4,10 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.dataflow.qual.Pure;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -25,6 +27,7 @@ final class ConstructorImpl<T extends @NonNull Object> implements Constructor<@N
     private final @NonNull List<@NonNull Parameter<?>> parameters;
     private final @NonNull ParameterizedType<@NonNull T> type;
     private final @NonNull Set<@NonNull Modifier> modifiers;
+    private final @NonNull List<@NonNull Annotation> rawAnnotations;
 
     @Pure
     public ConstructorImpl(final @NonNull TypeDefinition<@NonNull T> declaringType,
@@ -41,12 +44,28 @@ final class ConstructorImpl<T extends @NonNull Object> implements Constructor<@N
                 .collect(Collectors.toUnmodifiableList());
         this.type = ParameterizedType.of(constructor.getDeclaringClass());
         this.modifiers = Modifier.modifiersAsSet(constructor.getModifiers());
+        this.rawAnnotations = List.of(constructor.getAnnotations());
     }
 
     @Override
     public @NonNull AnnotationValues getAnnotations() {
 
         return annotations;
+    }
+
+    @Override
+    public <A extends @NonNull Annotation> @Nullable A getRawAnnotation(
+            final @NonNull Class<@NonNull A> annotationType) {
+
+        Objects.requireNonNull(annotationType, "annotationType cannot be null");
+
+        return constructor.getAnnotation(annotationType);
+    }
+
+    @Override
+    public @NonNull List<@NonNull Annotation> getRawAnnotations() {
+
+        return rawAnnotations;
     }
 
     @Override

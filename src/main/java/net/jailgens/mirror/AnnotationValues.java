@@ -47,6 +47,37 @@ public interface AnnotationValues {
         return new AnnotationValuesImpl.BuilderImpl();
     }
 
+
+    /**
+     * Creates a proxy of the specified {@code type} using values from this.
+     *
+     * @param type the type.
+     * @param <T> the type of the type.
+     * @return the proxy.
+     * @throws IllegalArgumentException if all {@code type} elements are not present in this.
+     * @throws NullPointerException if {@code type} is {@code null}.
+     * @since 0.4.0
+     */
+    @SideEffectFree
+    <T extends @NonNull Annotation> @NonNull T synthesise(final @NonNull Class<@NonNull T> type);
+
+    /**
+     * Creates a proxy of the specified {@code type} using values from this.
+     * <p>
+     * The {@code mirror} is used to create the annotation proxy.
+     *
+     * @param type the type.
+     * @param mirror the mirror.
+     * @param <T> the type of the type.
+     * @return the proxy.
+     * @throws IllegalArgumentException if all {@code type} elements are not present in this.
+     * @throws NullPointerException if {@code type} or {@code mirror} are {@code null}.
+     * @since 0.4.0
+     */
+    @SideEffectFree
+    <T extends @NonNull Annotation> @NonNull T synthesise(final @NonNull Mirror mirror,
+                                                          final @NonNull Class<@NonNull T> type);
+
     /**
      * Checks whether an annotation with the specified type-name is present.
      *

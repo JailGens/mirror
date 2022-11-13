@@ -4,6 +4,8 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.dataflow.qual.Pure;
 
+import java.lang.annotation.Annotation;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -19,6 +21,7 @@ final class ParameterImpl<T extends @Nullable Object> implements Parameter<@NonN
     private final @NonNull AnnotationValues annotations;
     private final @NonNull Set<@NonNull Modifier> modifiers;
     private final @NonNull ParameterizedType<@NonNull T> type;
+    private final @NonNull List<@NonNull Annotation> rawAnnotations;
 
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Pure
@@ -30,12 +33,28 @@ final class ParameterImpl<T extends @Nullable Object> implements Parameter<@NonN
         this.annotations = Reflections.createAnnotationValues(parameter);
         this.modifiers = Modifier.modifiersAsSet(parameter.getModifiers());
         this.type = ParameterizedType.of((Class) parameter.getType());
+        this.rawAnnotations = List.of(parameter.getAnnotations());
     }
 
     @Override
     public @NonNull AnnotationValues getAnnotations() {
 
         return annotations;
+    }
+
+    @Override
+    public <A extends @NonNull Annotation> @Nullable A getRawAnnotation(
+            final @NonNull Class<@NonNull A> annotationType) {
+
+        Objects.requireNonNull(annotationType, "annotationType cannot be null");
+
+        return parameter.getAnnotation(annotationType);
+    }
+
+    @Override
+    public @NonNull List<@NonNull Annotation> getRawAnnotations() {
+
+        return rawAnnotations;
     }
 
     @Override

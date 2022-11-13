@@ -1,16 +1,19 @@
 package net.jailgens.mirror;
 
+import net.bytebuddy.description.annotation.AnnotationValue;
 import org.checkerframework.checker.index.qual.Positive;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.annotation.Annotation;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SuppressWarnings("unused")
@@ -303,5 +306,57 @@ class ConstructorTest {
         final Class<TestClass> rawDeclaringType = constructor.getRawDeclaringType();
 
         assertEquals(TestClass.class, rawDeclaringType);
+    }
+
+    @Test
+    void Given_AnnotatedConstructor_When_GetRawAnnotation_Then_ReturnsAnnotation() {
+
+        class TestClass {
+
+            @TestAnnotation("value")
+            TestClass() {
+
+            }
+        }
+        final Constructor<TestClass> constructor = reflectConstructor(TestClass.class);
+
+        final TestAnnotation annotation = constructor.getRawAnnotation(TestAnnotation.class);
+
+        assertEquals("value", annotation.value());
+    }
+
+    @Test
+    void Given_UnannotatedConstructor_When_GetRawAnnotation_Then_ReturnsNull() {
+
+        class TestClass {
+
+            TestClass() {
+
+            }
+        }
+        final Constructor<TestClass> constructor = reflectConstructor(TestClass.class);
+
+        final TestAnnotation annotation = constructor.getRawAnnotation(TestAnnotation.class);
+
+        assertNull(annotation);
+    }
+
+    @Test
+    void Given_AnnotatedConstructor_When_GetRawAnnotations_Then_ReturnsAnnotationValue() {
+
+        class TestClass {
+
+            @TestAnnotation("value")
+            TestClass() {
+
+            }
+        }
+        final Constructor<?> constructor = reflectConstructor(TestClass.class);
+
+        final List<Annotation> annotations = constructor.getRawAnnotations();
+
+        assertEquals(1, annotations.size());
+        assertEquals(TestAnnotation.class, annotations.get(0).annotationType());
+        assertEquals("value", ((TestAnnotation) annotations.get(0)).value());
     }
 }

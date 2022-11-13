@@ -4,8 +4,10 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.dataflow.qual.Pure;
 
+import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -27,6 +29,7 @@ final class TypeDefinitionImpl<T extends @NonNull Object> implements TypeDefinit
     private final @NonNull Collection<@NonNull Constructor<@NonNull T>> constructors;
     private final @NonNull Collection<@NonNull Method<T, ? extends @Nullable Object>> methods;
     private final @NonNull Collection<@NonNull Member<@NonNull T>> members;
+    private final @NonNull List<@NonNull Annotation> rawAnnotations;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     @Pure
@@ -55,12 +58,29 @@ final class TypeDefinitionImpl<T extends @NonNull Object> implements TypeDefinit
         this.members = Stream.of(fields, constructors, methods)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toUnmodifiableList());
+
+        this.rawAnnotations = List.of(cls.getAnnotations());
     }
 
     @Override
     public @NonNull AnnotationValues getAnnotations() {
 
         return annotations;
+    }
+
+    @Override
+    public <A extends @NonNull Annotation> @Nullable A getRawAnnotation(
+            final @NonNull Class<@NonNull A> annotationType) {
+
+        Objects.requireNonNull(annotationType, "annotationType cannot be null");
+
+        return rawType.getAnnotation(annotationType);
+    }
+
+    @Override
+    public @NonNull List<@NonNull Annotation> getRawAnnotations() {
+
+        return rawAnnotations;
     }
 
     @Override

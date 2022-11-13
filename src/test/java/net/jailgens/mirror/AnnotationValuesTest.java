@@ -19,6 +19,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -107,6 +108,124 @@ class AnnotationValuesTest {
         assertTrue(hasParameterizedTarget);
         assertTrue(hasRetention);
         assertTrue(hasParameterizedRetention);
+    }
+
+    @Target(ElementType.ANNOTATION_TYPE)
+    // @Retention(RetentionPolicy.RUNTIME) shouldn't need runtime retention
+    @interface SynthesiseEqualsTestAnnotation {
+
+    }
+
+    @Nested
+    @DisplayName("Synthesise tests")
+    class SynthesiseTest {
+
+        @Test
+        void Given_AnnotationValues_When_Synthesise_Then_ReturnsCorrectAnnotation() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Target.class), new ElementType[]{ElementType.ANNOTATION_TYPE})
+                    .value(AnnotationElement.of(Retention.class, "value"), RetentionPolicy.SOURCE)
+                    .build();
+
+            final Target annotation = values.synthesise(Target.class);
+
+            assertEquals(Target.class, annotation.annotationType());
+            assertEquals(ElementType.ANNOTATION_TYPE, annotation.value()[0]);
+            assertEquals(SynthesiseEqualsTestAnnotation.class.getAnnotation(Target.class), annotation);
+            assertEquals(annotation, SynthesiseEqualsTestAnnotation.class.getAnnotation(Target.class));
+        }
+
+        @Test
+        void Given_EqualSynthesisedAnnotations_When_Equals_Then_ReturnsTrue() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Target.class), new ElementType[]{ElementType.ANNOTATION_TYPE})
+                    .build();
+
+            final Target annotation1 = values.synthesise(Target.class);
+            final Target annotation2 = values.synthesise(Target.class);
+
+            assertEquals(annotation1, annotation2);
+        }
+
+        @Test
+        void Given_NonEqualSynthesisedAnnotations_When_Equals_Then_ReturnsFalse() {
+
+            final Target target1 = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Target.class), new ElementType[]{ElementType.ANNOTATION_TYPE})
+                    .build()
+                    .synthesise(Target.class);
+            final Target target2 = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Target.class), new ElementType[]{ElementType.TYPE})
+                    .build()
+                    .synthesise(Target.class);
+
+            assertNotEquals(target1, target2);
+        }
+
+        @SuppressWarnings("ConstantConditions")
+        @Test
+        void Given_NullMirror_When_Synthesise_Then_Throws() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Target.class), ElementType.ANNOTATION_TYPE)
+                    .value(AnnotationElement.of(Retention.class, "value"), RetentionPolicy.SOURCE)
+                    .build();
+
+            assertThrows(NullPointerException.class, () -> values.synthesise(null, Target.class));
+        }
+
+        @SuppressWarnings("ConstantConditions")
+        @Test
+        void Given_NullAnnotationType_When_Synthesise_Then_Throws() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Target.class), ElementType.ANNOTATION_TYPE)
+                    .value(AnnotationElement.of(Retention.class, "value"), RetentionPolicy.SOURCE)
+                    .build();
+
+            assertThrows(NullPointerException.class, () -> values.synthesise(null));
+        }
+
+        @Test
+        void Given_SynthesisedAnnotation_When_EqualsWithWrongType_Then_ReturnsFalse() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Target.class), new ElementType[]{ElementType.ANNOTATION_TYPE})
+                    .build();
+
+            final Target annotation = values.synthesise(Target.class);
+
+            assertNotEquals(annotation, new Object());
+        }
+
+        @Test
+        void Given_SynthesisedAnnotation_When_HashCode_Then_ReturnsSameHashCode() {
+
+            final AnnotationValues values = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Target.class), new ElementType[]{ElementType.ANNOTATION_TYPE})
+                    .build();
+
+            final Target target = values.synthesise(Target.class);
+
+            assertEquals(target.hashCode(), target.hashCode());
+        }
+
+        @Test
+        void Given_SynthesisedAnnotation_When_HashCode_Then_ReturnsDifferentHashCode() {
+
+            final Target target1 = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Target.class), new ElementType[]{ElementType.ANNOTATION_TYPE})
+                    .build()
+                    .synthesise(Target.class);
+            final Target target2 = AnnotationValues.builder()
+                    .value(AnnotationElement.value(Target.class), new ElementType[]{ElementType.TYPE})
+                    .build()
+                    .synthesise(Target.class);
+
+            assertNotEquals(target1.hashCode(), target2.hashCode());
+        }
     }
 
     @SuppressWarnings("unchecked")

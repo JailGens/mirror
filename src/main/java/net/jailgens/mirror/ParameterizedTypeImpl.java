@@ -4,8 +4,10 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.dataflow.qual.Pure;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.StringJoiner;
 
 /**
@@ -59,6 +61,24 @@ final class ParameterizedTypeImpl<T extends @Nullable Object> implements Paramet
     public @NonNull AnnotationValues getAnnotations() {
 
         return annotations;
+    }
+
+    @Override
+    public <A extends @NonNull Annotation> @Nullable A getRawAnnotation(
+            final @NonNull Class<@NonNull A> annotationType) {
+
+        if (!annotations.hasAnnotation(annotationType)) {
+            return null;
+        }
+
+        return annotations.synthesise(annotationType);
+    }
+
+    @Override
+    public @NonNull List<@NonNull Annotation> getRawAnnotations() {
+
+        // Unable to properly implement this method, as we don't have access to the underlying type
+        return List.of();
     }
 
     @Override

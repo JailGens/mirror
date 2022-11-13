@@ -3,14 +3,18 @@ package net.jailgens.mirror;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.annotation.Annotation;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TypeDefinitionTest {
@@ -149,5 +153,49 @@ class TypeDefinitionTest {
 
     interface TestInterface {
 
+    }
+
+    @Test
+    void Given_AnnotatedTypeDefinition_When_GetRawAnnotation_Then_ReturnsAnnotation() {
+
+        @TestAnnotation(10)
+        class TestClass {
+
+        }
+        final TypeDefinition<TestClass> typeDefinition = mirror.reflect(TestClass.class);
+
+        final TestAnnotation annotation = typeDefinition.getRawAnnotation(TestAnnotation.class);
+
+        assertNotNull(annotation);
+        assertEquals(10, annotation.value());
+    }
+
+    @Test
+    void Given_UnannotatedTypeDefinition_When_GetRawAnnotation_Then_ReturnsNull() {
+
+        class TestClass {
+
+        }
+        final TypeDefinition<TestClass> typeDefinition = mirror.reflect(TestClass.class);
+
+        final TestAnnotation annotation = typeDefinition.getRawAnnotation(TestAnnotation.class);
+
+        assertNull(annotation);
+    }
+
+    @Test
+    void Given_AnnotatedTypeDefinition_When_GetRawAnnotations_Then_ReturnsAnnotations() {
+
+        @TestAnnotation(10)
+        class TestClass {
+
+        }
+        final TypeDefinition<TestClass> typeDefinition = mirror.reflect(TestClass.class);
+
+        final List<Annotation> annotations = typeDefinition.getRawAnnotations();
+
+        assertEquals(1, annotations.size());
+        assertEquals(TestAnnotation.class, annotations.get(0).annotationType());
+        assertEquals(10, ((TestAnnotation) annotations.get(0)).value());
     }
 }
