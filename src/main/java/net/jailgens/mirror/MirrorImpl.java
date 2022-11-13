@@ -21,7 +21,7 @@ final class MirrorImpl implements Mirror {
      */
     private static class Instance {
 
-        private static final @NonNull Mirror INSTANCE = new MirrorImpl(DEFAULT_CLASS_LOADER);
+        private static final @NonNull Mirror INSTANCE = new MirrorImpl(true, DEFAULT_CLASS_LOADER);
     }
 
     private static final @NonNull ClassLoader DEFAULT_CLASS_LOADER = ClassLoader.getSystemClassLoader();
@@ -30,11 +30,20 @@ final class MirrorImpl implements Mirror {
     private final @NonNull Map<
             @NonNull Class<? extends @NonNull Object>,
             @NonNull TypeDefinition<? extends @NonNull Object>
-            > typeDefinitionCache = new WeakHashMap<>();
+            > typeDefinitionCache;
+    private final boolean cachingEnabled;
+
     private final @NonNull ClassLoader classLoader;
 
-    private MirrorImpl(final @NonNull ClassLoader classLoader) {
+    private MirrorImpl(final boolean cache, final @NonNull ClassLoader classLoader) {
 
+        if (cache) {
+            this.typeDefinitionCache = new WeakHashMap<>();
+        } else {
+            this.typeDefinitionCache = Map.of();
+        }
+
+        this.cachingEnabled = cache;
         this.classLoader = classLoader;
     }
 
@@ -50,7 +59,11 @@ final class MirrorImpl implements Mirror {
         }
 
         final TypeDefinition<T> typeDefinition = new TypeDefinitionImpl<>(this, cls);
-        typeDefinitionCache.put(cls, typeDefinition);
+
+        if (cachingEnabled) {
+            typeDefinitionCache.put(cls, typeDefinition);
+        }
+
         return typeDefinition;
     }
 
@@ -77,6 +90,7 @@ final class MirrorImpl implements Mirror {
     static final class BuilderImpl implements Builder {
 
         private ClassLoader classLoader;
+        private boolean cache = true;
 
         @Override
         public @NonNull @This Builder classLoader(@Nullable ClassLoader classLoader) {
@@ -86,13 +100,20 @@ final class MirrorImpl implements Mirror {
         }
 
         @Override
+        public @NonNull @This Builder cache(boolean cache) {
+
+            this.cache = cache;
+            return this;
+        }
+
+        @Override
         public @NonNull Mirror build() {
 
-            if (classLoader == null) {
+            if (classLoader == null && cache) {
                 return Instance.INSTANCE;
             }
 
-            return new MirrorImpl(classLoader);
+            return new MirrorImpl(cache, classLoader == null ? DEFAULT_CLASS_LOADER : classLoader);
         }
     }
 }

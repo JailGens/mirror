@@ -75,6 +75,20 @@ public interface Mirror {
         @NonNull @This Builder classLoader(@Nullable ClassLoader classLoader);
 
         /**
+         * Sets whether to cache {@link TypeDefinition}s.
+         * <p>
+         * If unspecified, caching will be enabled.
+         *
+         * @param cache whether to cache {@link TypeDefinition}s.
+         * @return this builder (for chaining).
+         * @since 0.4.0
+         */
+        default @NonNull @This Builder cache(boolean cache) {
+
+            return this;
+        }
+
+        /**
          * Builds the mirror.
          *
          * @return the built mirror.
