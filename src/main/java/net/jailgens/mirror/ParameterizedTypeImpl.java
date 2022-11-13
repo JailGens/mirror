@@ -64,24 +64,6 @@ final class ParameterizedTypeImpl<T extends @Nullable Object> implements Paramet
     }
 
     @Override
-    public <A extends @NonNull Annotation> @Nullable A getRawAnnotation(
-            final @NonNull Class<@NonNull A> annotationType) {
-
-        if (!annotations.hasAnnotation(annotationType)) {
-            return null;
-        }
-
-        return annotations.synthesise(annotationType);
-    }
-
-    @Override
-    public @NonNull List<@NonNull Annotation> getRawAnnotations() {
-
-        // Unable to properly implement this method, as we don't have access to the underlying type
-        return List.of();
-    }
-
-    @Override
     public @NonNull Class<@NonNull T> getRawType() {
 
         return rawType;

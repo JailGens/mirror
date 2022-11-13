@@ -36,8 +36,11 @@ public interface Annotated {
      * @throws NullPointerException if {@code annotationType} is {@code null}.
      * @since 0.4.0
      */
-    <T extends @NonNull Annotation> @Nullable T getRawAnnotation(
-            @NonNull Class<@NonNull T> annotationType);
+    default <T extends @NonNull Annotation> @Nullable T getRawAnnotation(
+            @NonNull Class<@NonNull T> annotationType) {
+
+        return null;
+    }
 
     /**
      * Gets the raw annotations this is annotated with.
@@ -45,5 +48,8 @@ public interface Annotated {
      * @return the raw annotations this is annotated with.
      * @since 0.4.0
      */
-    @NonNull List<@NonNull Annotation> getRawAnnotations();
+    default @NonNull List<@NonNull Annotation> getRawAnnotations() {
+
+        return List.of();
+    }
 }

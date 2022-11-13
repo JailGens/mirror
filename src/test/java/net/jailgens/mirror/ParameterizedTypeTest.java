@@ -129,8 +129,7 @@ class ParameterizedTypeTest {
 
         final TestAnnotation annotation = parameterizedType.getRawAnnotation(TestAnnotation.class);
 
-        assertNotNull(annotation);
-        assertEquals("test value", annotation.value());
+        assertNull(annotation);
     }
 
     @Test

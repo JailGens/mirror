@@ -127,27 +127,6 @@ final class AnnotationValuesImpl implements AnnotationValues {
     }
 
     @Override
-    public <T extends @NonNull Annotation> @NonNull T synthesise(@NonNull Class<@NonNull T> type) {
-
-        return synthesise(DEFAULT_MIRROR, type);
-    }
-
-    @Override
-    public <T extends @NonNull Annotation> @NonNull T synthesise(final @NonNull Mirror mirror,
-                                                                 final @NonNull Class<@NonNull T> type) {
-
-        Objects.requireNonNull(mirror, "mirror cannot be null");
-        Objects.requireNonNull(type, "type cannot be null");
-
-        if (!annotations.contains(type.getTypeName())) {
-            throw new IllegalArgumentException("Annotation " + type.getTypeName() + " is not present");
-        }
-
-        return mirror.createProxy(type,
-                new SynthesisedAnnotationInvocationHandler<>(this, mirror.reflect(type), type));
-    }
-
-    @Override
     public boolean hasAnnotation(final @Nullable String annotationType) {
 
         return annotations.contains(annotationType);
