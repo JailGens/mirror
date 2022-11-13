@@ -51,7 +51,7 @@ class ConstructorTest {
     @BeforeEach
     void setUp() {
 
-        mirror = Mirror.builder().cache(false).build();
+        mirror = Mirror.builder().build();
     }
 
     @Retention(RetentionPolicy.RUNTIME)
