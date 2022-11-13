@@ -198,4 +198,81 @@ class TypeDefinitionTest {
         assertEquals(TestAnnotation.class, annotations.get(0).annotationType());
         assertEquals(10, ((TestAnnotation) annotations.get(0)).value());
     }
+
+    @Test
+    void Given_TypeDefinition_When_GetInnerTypes_Then_ReturnsInnerTypes() {
+
+        class TestClass {
+
+            class Inner {
+
+            }
+        }
+        final TypeDefinition<?> typeDefinition = mirror.reflect(TestClass.class);
+
+        final Collection<?> innerTypes = typeDefinition.getInnerTypes();
+
+        assertEquals(1, innerTypes.size());
+        assertEquals(mirror.reflect(TestClass.Inner.class), innerTypes.stream()
+                .findAny()
+                .orElseThrow(AssertionError::new));
+    }
+
+    @Test
+    void Given_InnerTypeDefinition_When_GetDeclaringType_Then_ReturnsDeclaringType() {
+
+        class TestClass {
+
+            class Inner {
+
+            }
+        }
+        final TypeDefinition<?> typeDefinition = mirror.reflect(TestClass.class);
+
+        final Collection<TypeDefinition<?>> innerTypes = typeDefinition.getInnerTypes();
+
+        assertEquals(typeDefinition, innerTypes.stream()
+                .findAny()
+                .orElseThrow(AssertionError::new)
+                .getDeclaringType());
+    }
+
+    @Test
+    void Given_InnerTypeDefinition_When_GetRawDeclaringType_Then_ReturnsRawDeclaringType() {
+
+        class TestClass {
+
+            class Inner {
+
+            }
+        }
+        final TypeDefinition<?> typeDefinition = mirror.reflect(TestClass.class);
+
+        final Collection<TypeDefinition<?>> innerTypes = typeDefinition.getInnerTypes();
+
+        assertEquals(TestClass.class, innerTypes.stream()
+                .findAny()
+                .orElseThrow(AssertionError::new)
+                .getRawDeclaringType());
+    }
+
+    @Test
+    void Given_OuterTypeDefinition_When_GetDeclaringType_Then_ReturnsNull() {
+
+        final TypeDefinition<?> typeDefinition = mirror.reflect(OuterTestClass.class);
+
+        final TypeDefinition<?> declaringType = typeDefinition.getDeclaringType();
+
+        assertNull(declaringType);
+    }
+
+    @Test
+    void Given_OuterTypeDefinition_When_GetRawDeclaringType_Then_ReturnsNull() {
+
+        final TypeDefinition<?> typeDefinition = mirror.reflect(OuterTestClass.class);
+
+        final Class<?> declaringType = typeDefinition.getRawDeclaringType();
+
+        assertNull(declaringType);
+    }
 }

@@ -21,22 +21,30 @@ import java.util.stream.Stream;
  */
 final class TypeDefinitionImpl<T extends @NonNull Object> implements TypeDefinition<@NonNull T> {
 
+    /**
+     * Use the mirror, so we can increase cache hits for inner classes.
+     */
+    private final @NonNull Mirror mirror;
     private final @NonNull Class<@NonNull T> rawType;
     private final @NonNull AnnotationValues annotations;
     private final @NonNull Set<@NonNull Modifier> modifiers;
+
+    private final @NonNull List<@NonNull Annotation> rawAnnotations;
 
     private final @NonNull Collection<@NonNull Field<@NonNull T, ? extends @Nullable Object>> fields;
     private final @NonNull Collection<@NonNull Constructor<@NonNull T>> constructors;
     private final @NonNull Collection<@NonNull Method<T, ? extends @Nullable Object>> methods;
     private final @NonNull Collection<@NonNull Member<@NonNull T>> members;
-    private final @NonNull List<@NonNull Annotation> rawAnnotations;
+    private final @NonNull Collection<@NonNull TypeDefinition<? extends @NonNull Object>> innerTypes;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     @Pure
-    TypeDefinitionImpl(final @NonNull Class<@NonNull T> cls) {
+    TypeDefinitionImpl(final @NonNull Mirror mirror, final @NonNull Class<@NonNull T> cls) {
 
+        Objects.requireNonNull(mirror, "mirror cannot be null");
         Objects.requireNonNull(cls, "cls cannot be null");
 
+        this.mirror = mirror;
         this.rawType = cls;
         this.annotations = Reflections.createAnnotationValues(cls);
         this.modifiers = Modifier.modifiersAsSet(cls.getModifiers());
@@ -60,6 +68,9 @@ final class TypeDefinitionImpl<T extends @NonNull Object> implements TypeDefinit
                 .collect(Collectors.toUnmodifiableList());
 
         this.rawAnnotations = List.of(cls.getAnnotations());
+        this.innerTypes = Arrays.stream(cls.getDeclaredClasses())
+                .map(mirror::reflect)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     @Override
@@ -114,7 +125,7 @@ final class TypeDefinitionImpl<T extends @NonNull Object> implements TypeDefinit
     }
 
     @Override
-    public @NonNull Collection<@NonNull Field<@NonNull T, ?>> getFields() {
+    public @NonNull Collection<@NonNull Field<@NonNull T, ? extends @NonNull Object>> getFields() {
 
         return fields;
     }
@@ -126,7 +137,7 @@ final class TypeDefinitionImpl<T extends @NonNull Object> implements TypeDefinit
     }
 
     @Override
-    public @NonNull Collection<@NonNull Method<@NonNull T, ?>> getMethods() {
+    public @NonNull Collection<@NonNull Method<@NonNull T, ? extends @NonNull Object>> getMethods() {
 
         return methods;
     }
@@ -163,5 +174,27 @@ final class TypeDefinitionImpl<T extends @NonNull Object> implements TypeDefinit
     public int hashCode() {
 
         return Objects.hash(rawType, annotations, modifiers, fields, constructors, methods, members);
+    }
+
+    @Override
+    public @NonNull Collection<@NonNull TypeDefinition<? extends @NonNull Object>> getInnerTypes() {
+
+        return innerTypes;
+    }
+
+    @Override
+    public @Nullable TypeDefinition<? extends @NonNull Object> getDeclaringType() {
+
+        if (rawType.getDeclaringClass() == null) {
+            return null;
+        }
+
+        return mirror.reflect(rawType.getDeclaringClass());
+    }
+
+    @Override
+    public @Nullable Class<? extends @NonNull Object> getRawDeclaringType() {
+
+        return rawType.getDeclaringClass();
     }
 }
