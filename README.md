@@ -68,7 +68,7 @@ dependencies {
     <dependency>
         <groupId>net.jailgens</groupId>
         <artifactId>mirror</artifactId>
-        <version{release}</version>
+        <version>{release}</version>
     </dependency>
 </dependencies>
 ```
