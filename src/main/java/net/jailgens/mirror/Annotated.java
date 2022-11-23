@@ -26,8 +26,6 @@ public interface Annotated {
 
     /**
      * Crates a proxy of the specified annotation for this.
-     * <p>
-     * This result is the same as {@code getAnnotations().synthesise(annotation)}.
      *
      * @param annotationType the annotation type to create a proxy for.
      * @param <T> the annotation type.
