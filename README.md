@@ -15,12 +15,18 @@
 
 ## Table of Contents
 
-1. [Installation](#-installation)
+1. [Documentation](#-documentation)
+2. [Installation](#-installation)
     1. [Gradle (Kotlin DSL)](#gradle-kotlin-dsl)
     2. [Gradle (Groovy DSL)](#gradle-groovy-dsl)
     3. [Maven](#maven)
-2. [Contributing](#-contributing)
-3. [License](#-license)
+3. [Contributing](#-contributing)
+4. [License](#-license)
+
+## 📚 Documentation
+
+- [📖 User Guide](https://dev.jailgens.net/jailgens-open-source/mirror/getting-started)
+- [📄 Javadoc](https://repo.sparky983.me/javadoc/releases/net/jailgens/mirror/latest)
 
 ## 📦 Installation
 
