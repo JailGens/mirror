@@ -30,8 +30,6 @@
 
 ## 📦 Installation
 
-Replace `{release}` with the latest release version.
-
 <img src="https://img.shields.io/github/v/tag/jailgens/mirror?display_name=release&label=Release&style=flat-square&color=12bed3&labelColor=06222b" alt="Version">
 
 ### Gradle (Kotlin DSL)
@@ -42,7 +40,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.jailgens:mirror:{release}")
+    implementation("net.jailgens:mirror:0.4.0")
 }
 ```
 
@@ -56,7 +54,7 @@ repositories {
 }
 
 dependencies {
-    implementation "net.jailgens:mirror:{release}"
+    implementation "net.jailgens:mirror:0.4.0"
 }
 ```
 
@@ -74,7 +72,7 @@ dependencies {
     <dependency>
         <groupId>net.jailgens</groupId>
         <artifactId>mirror</artifactId>
-        <version>{release}</version>
+        <version>0.4.0</version>
     </dependency>
 </dependencies>
 ```
