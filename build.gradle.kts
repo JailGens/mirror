@@ -36,9 +36,9 @@ publishing {
         maven {
             name = "sparky"
             url = if (project.version.toString().endsWith("-SNAPSHOT")) {
-                uri("https://repo.sparky983.me/snapshots")
+                uri("https://repo.jailgens.net/snapshots")
             } else {
-                uri("https://repo.sparky983.me/releases")
+                uri("https://repo.jailgens.net/releases")
             }
             credentials(PasswordCredentials::class)
             authentication {
