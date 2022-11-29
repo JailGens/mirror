@@ -26,7 +26,7 @@
 ## 📚 Documentation
 
 - [📖 User Guide](https://dev.jailgens.net/jailgens-open-source/mirror/getting-started)
-- [📄 Javadoc](https://repo.sparky983.me/javadoc/releases/net/jailgens/mirror/latest)
+- [📄 Javadoc](https://repo.jailgens.net/javadoc/releases/net/jailgens/mirror/latest)
 
 ## 📦 Installation
 
@@ -36,7 +36,7 @@
 
 ```kotlin
 repositories {
-    maven("https://repo.sparky983.me/releases")
+    maven("https://repo.jailgens.net/releases")
 }
 
 dependencies {
@@ -49,7 +49,7 @@ dependencies {
 ```groovy
 repositories {
     maven {
-        url "https://repo.sparky983.me/releases"
+        url "https://repo.jailgens.net/releases"
     }
 }
 
@@ -64,7 +64,7 @@ dependencies {
 <repositories>
     <repository>
         <id>sparky</id>
-        <url>https://repo.sparky983.me/releases</url>
+        <url>https://repo.jailgens.net/releases</url>
     </repository>
 </repositories>
 
