@@ -25,7 +25,7 @@
 
 ## 📚 Documentation
 
-- [📖 User Guide](https://dev.jailgens.net/jailgens-open-source/mirror/getting-started)
+- [📖 User Guide](https://dev.jailgens.net/docs/mirror/getting-started)
 - [📄 Javadoc](https://repo.jailgens.net/javadoc/releases/net/jailgens/mirror/latest)
 
 ## 📦 Installation
