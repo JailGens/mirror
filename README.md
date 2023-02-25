@@ -63,7 +63,7 @@ dependencies {
 ```xml
 <repositories>
     <repository>
-        <id>sparky</id>
+        <id>jailgens</id>
         <url>https://repo.jailgens.net/releases</url>
     </repository>
 </repositories>
