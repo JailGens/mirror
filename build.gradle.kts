@@ -21,7 +21,7 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.2"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-    testImplementation("org.mockito:mockito-core:5.3.0")
+    testImplementation("org.mockito:mockito-core:5.3.1")
 }
 
 publishing {
