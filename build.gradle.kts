@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.checkerframework:checker-qual:3.35.0")
+    implementation("org.checkerframework:checker-qual:3.36.0")
 
     testImplementation(platform("org.junit:junit-bom:5.9.3"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
